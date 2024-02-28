@@ -1,0 +1,88 @@
+/* Nav component styling */
+
+/* nav {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  margin-top: 10px;
+} */
+/* .large-nav {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  margin-top: 10px;
+} */
+
+/* nav a{
+  display: inline-flex;
+  padding-right: 30px;
+  text-decoration: none;
+  color: black;
+} */
+.large-nav a{
+  display: inline-flex;
+  padding-right: 30px;
+  text-decoration: none;
+  color: black;
+}
+
+.navLinks{
+  padding-top: 10px;
+  display: inline-flex;
+  font-size: 20px;
+}
+
+.hamIcon{
+  padding-top: 5px;
+  display: inline-flex;
+  display: none;
+}
+.hamLinks{
+  display: none;
+}
+.hamIcon:hover{
+  cursor: pointer;
+}
+
+
+@media (max-width: 860px) {
+  .navLinks {
+    display: none;
+  }
+  nav {
+    align-content: space-between;
+  }
+  .hamIcon {
+    padding-top: 5px;
+    display: inline-flex;
+  }
+  .hamLinks{
+    text-align: center;
+    flex-direction: column;
+    position: absolute;
+    width: 93%;
+    background-color: white;
+    margin-top: 280px;
+  }
+  .hamLinks, Link{
+    display: flex;
+    flex-direction: column;
+    /* text-decoration: none; */
+    border: 1px solid black;
+  }
+  .hamLinks a{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+  }
+
+  Link, a {
+    margin-bottom: 10px;
+    color: black;
+    width: 100%;
+    padding: 10px 0;
+  }
+  Link, a:hover {
+    background-color: lightgray;
+  }
+}
