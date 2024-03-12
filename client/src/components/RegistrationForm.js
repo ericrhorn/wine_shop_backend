@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-
-const RegistrationForm = () => {
+const RegistrationForm = (props) => {
   const [errs, setErrs] = useState({});
+  const { setIsLoggedin } = props;
 
   const navigate = useNavigate();
 
@@ -15,6 +15,7 @@ const RegistrationForm = () => {
     password: "",
     confirmPassword: "",
     isAdmin: false,
+    isManager: false,
   });
 
   const handleChange = (e) => {
@@ -31,9 +32,16 @@ const RegistrationForm = () => {
         withCredentials: true,
       })
       .then((res) => {
-        console.log('here is the data', res.data);
-        setErrs({});
-        navigate("/");
+        console.log("here is the data", res.data);
+        setIsLoggedin(true);
+        setErrs("");
+        if (res.data.user.isAdmin) {
+          navigate("/adminDashboard"); // Navigate to admin dashboard
+        } else if (res.data.user.isManager) {
+          navigate("/managerDashboard"); // Navigate to manager dashboard
+        } else {
+          navigate("/dashboard"); // Navigate to regular user dashboard
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -50,7 +58,7 @@ const RegistrationForm = () => {
         <h2>Register</h2>
         <form onSubmit={registerUser}>
           <div className="mb-3 mt-3">
-            <label>First Name</label>
+            <label htmlFor="firstName">First Name</label>
             <br />
             {errs.firstName ? (
               <span className="error-text" style={{ color: "red" }}>
@@ -58,6 +66,7 @@ const RegistrationForm = () => {
               </span>
             ) : null}
             <input
+              id="firstName"
               className="form-control"
               type="text"
               name="firstName"
@@ -66,7 +75,7 @@ const RegistrationForm = () => {
             />
           </div>
           <div className="mb-3">
-            <label>Last Name</label>
+            <label htmlFor="lastName">Last Name</label>
             <br />
             {errs.lastName ? (
               <span className="error-text" style={{ color: "red" }}>
@@ -74,6 +83,7 @@ const RegistrationForm = () => {
               </span>
             ) : null}
             <input
+              id="lastName"
               className="form-control"
               type="text"
               name="lastName"
@@ -82,7 +92,7 @@ const RegistrationForm = () => {
             />
           </div>
           <div className="mb-3">
-            <label>Email</label>
+            <label htmlFor="email">Email</label>
             <br />
             {errs.email ? (
               <span className="error-text" style={{ color: "red" }}>
@@ -90,6 +100,7 @@ const RegistrationForm = () => {
               </span>
             ) : null}
             <input
+              id="email"
               className="form-control"
               type="email"
               name="email"
@@ -98,7 +109,7 @@ const RegistrationForm = () => {
             />
           </div>
           <div className="mb-3">
-            <label>Password</label>
+            <label htmlFor="password">Password</label>
             <br />
             {errs.password ? (
               <span className="error-text" style={{ color: "red" }}>
@@ -106,6 +117,7 @@ const RegistrationForm = () => {
               </span>
             ) : null}
             <input
+              id="password"
               className="form-control"
               type="password"
               name="password"
@@ -114,7 +126,7 @@ const RegistrationForm = () => {
             />
           </div>
           <div className="mb-3">
-            <label>Password Confirmation</label>
+            <label htmlFor="passwordComp">Password Confirmation</label>
             <br />
             {errs.confirmPassword ? (
               <span className="error-text" style={{ color: "red" }}>
@@ -122,6 +134,7 @@ const RegistrationForm = () => {
               </span>
             ) : null}
             <input
+              id="passwordComp"
               className="form-control"
               type="password"
               name="confirmPassword"

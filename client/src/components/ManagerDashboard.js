@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const Dashboard = (props) => {
+const ManagerDashboard = (props) => {
   const [user, setUser] = useState(null);
-  const { isLoggedin, setIsLoggedin } = props;
-    console.log("setIsLoggedin:", setIsLoggedin);
-    console.log("IsLoggedin:", isLoggedin);
+  const { isLoggedin } = props;
 
   useEffect(() => {
     axios
@@ -13,7 +11,7 @@ const Dashboard = (props) => {
         withCredentials: true,
       })
       .then((res) => {
-        console.log("current user data",res.data);
+        console.log(res.data);
         setUser(res.data);
       })
       .catch((err) => {
@@ -21,12 +19,13 @@ const Dashboard = (props) => {
       });
   }, [isLoggedin]);
 
-  // Render user data only when user is not null
+
+
   return (
     <>
       {user && (
         <div>
-          <h1>User Dashboard</h1>
+          <h1>Manager Dashboard</h1>
           <h1>Welcome, {user.firstName}!</h1>
           <p>{user.lastName}</p>
           <p>{user.email}</p>
@@ -39,4 +38,4 @@ const Dashboard = (props) => {
   );
 };
 
-export default Dashboard;
+export default ManagerDashboard;

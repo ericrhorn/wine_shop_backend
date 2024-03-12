@@ -1,15 +1,18 @@
 import React from 'react'
 import RegistrationForm from '../components/RegistrationForm'
 
-const WineClub = () => {
+const WineClub = (props) => {
+
+  const { setIsLoggedin } = props;
+
   return (
     <>
-      <div id="container" style={{ height: "100vh"}}>
+      <div id="container" style={{ height: "100vh" }}>
+        <div>WineClub</div>
         <div>
-          WineClub
-        </div>
-        <div>
-          <RegistrationForm />
+          <RegistrationForm
+            setIsLoggedin={setIsLoggedin}
+          />
         </div>
       </div>
     </>

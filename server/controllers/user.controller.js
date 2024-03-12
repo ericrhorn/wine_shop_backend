@@ -26,6 +26,7 @@ const register = async (req, res) => {
         firstName: newUser.firstName,
         lastName: newUser.lastName,
         isAdmin: newUser.isAdmin,
+        isManager: newUser.isManager,
       },
       SECRET
     );
