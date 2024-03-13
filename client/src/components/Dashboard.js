@@ -4,8 +4,8 @@ import axios from "axios";
 const Dashboard = (props) => {
   const [user, setUser] = useState(null);
   const { isLoggedin, setIsLoggedin } = props;
-    console.log("setIsLoggedin:", setIsLoggedin);
-    console.log("IsLoggedin:", isLoggedin);
+  console.log("setIsLoggedin:", setIsLoggedin);
+  console.log("IsLoggedin:", isLoggedin);
 
   useEffect(() => {
     axios
@@ -13,7 +13,7 @@ const Dashboard = (props) => {
         withCredentials: true,
       })
       .then((res) => {
-        console.log("current user data",res.data);
+        console.log("current user data", res.data);
         setUser(res.data);
       })
       .catch((err) => {

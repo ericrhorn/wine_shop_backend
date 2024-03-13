@@ -29,13 +29,14 @@ const LoginReg = (props) => {
         console.log(res.data);
         setIsLoggedin(true);
         setErrs("");
-        if (res.data.user.isAdmin) {
-          navigate("/adminDashboard"); // Navigate to admin dashboard
-        } else if (res.data.user.isManager) {
-          navigate("/managerDashboard"); // Navigate to manager dashboard
-        } else {
-          navigate("/dashboard"); // Navigate to regular user dashboard
-        }
+        navigate("/MainDashboard");
+        // if (res.data.user.isAdmin) {
+        //   navigate("/adminDashboard"); // Navigate to admin dashboard
+        // } else if (res.data.user.isManager) {
+        //   navigate("/managerDashboard"); // Navigate to manager dashboard
+        // } else {
+        //   navigate("/dashboard"); // Navigate to regular user dashboard
+        // }
       })
       .catch((err) => {
         console.log(err.response.data.error);

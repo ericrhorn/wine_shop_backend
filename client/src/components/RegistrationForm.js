@@ -35,13 +35,14 @@ const RegistrationForm = (props) => {
         console.log("here is the data", res.data);
         setIsLoggedin(true);
         setErrs("");
-        if (res.data.user.isAdmin) {
-          navigate("/adminDashboard"); // Navigate to admin dashboard
-        } else if (res.data.user.isManager) {
-          navigate("/managerDashboard"); // Navigate to manager dashboard
-        } else {
-          navigate("/dashboard"); // Navigate to regular user dashboard
-        }
+        navigate("/MainDashboard");
+        // if (res.data.user.isAdmin) {
+        //   navigate("/adminDashboard"); // Navigate to admin dashboard
+        // } else if (res.data.user.isManager) {
+        //   navigate("/managerDashboard"); // Navigate to manager dashboard
+        // } else {
+        //   navigate("/dashboard"); // Navigate to regular user dashboard
+        // }
       })
       .catch((err) => {
         console.log(err);

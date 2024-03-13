@@ -102,7 +102,7 @@ export default function Nav(props) {
                   <Link to="/wineClub" relative="path">
                     Wine Club
                   </Link>
-                  <Link to="/dashboard" relative="path">
+                  <Link to="/mainDashboard" relative="path">
                     {user.firstName}
                   </Link>
                   <Link onClick={logout}>Logout</Link>
@@ -129,7 +129,7 @@ export default function Nav(props) {
                   <Link onClick={closeMenu} to="/wineClub" relative="path">
                     Wine Club
                   </Link>
-                  <Link onClick={closeMenu} to="/dashboard" relative="path">
+                  <Link onClick={closeMenu} to="/mainDashboard" relative="path">
                     {user.firstName}
                   </Link>
                   <Link

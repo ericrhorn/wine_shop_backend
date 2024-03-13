@@ -10,9 +10,10 @@ module.exports = (app) => {
     authenticate,
     UserController.getLoggedInUser
   );
+  app.get("/api/users/showUsers", UserController.showUsers);
+
 
   // app.post('/api/user', userController.newUser);
-  // app.get('/api/user', userController.showUser);
   // app.get('/api/user/:_id', userController.showOneuUser);
   // app.put('/api/user/:_id/', userController.updateUser);
   // app.delete('/api/user/:_id', userController.deleteUser);

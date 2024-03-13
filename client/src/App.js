@@ -13,12 +13,14 @@ import Dashboard from "./components/Dashboard";
 import AdminDashboard from "./components/AdminDashboard";
 import ManagerDashboard from "./components/ManagerDashboard";
 // import RegistrationForm from "./components/RegistrationForm";
+import MainDashboard from "./components/MainDashboard";
 
 import "@fontsource/open-sans";
 
 
 function App() {
   const [isLoggedin, setIsLoggedin] = useState(false);
+  
 
   return (
     <>
@@ -54,7 +56,11 @@ function App() {
             }
           /> */}
           <Route
-            path="/dashboard"
+            path="/MainDashboard"
+            element={<MainDashboard isLoggedin={isLoggedin} />}
+          />
+          {/* <Route
+            path="/userDashboard"
             element={<Dashboard isLoggedin={isLoggedin} />}
           />
           <Route
@@ -64,7 +70,7 @@ function App() {
           <Route
             path="/managerDashboard"
             element={<ManagerDashboard isLoggedin={isLoggedin} />}
-          />
+          /> */}
         </Routes>
       </HashRouter>
       <Footer />

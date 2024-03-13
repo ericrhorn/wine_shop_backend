@@ -13,6 +13,7 @@ const register = async (req, res) => {
     const user = new User({
       ...userData,
       isAdmin: isAdmin || false, // Default to false if isAdmin is not provided
+      isManager: isAdmin || false, // Default to false if isAdmin is not provided
     });
 
     const newUser = await user.save();
@@ -106,10 +107,40 @@ const getLoggedInUser = (req, res) => {
     );
 };
 
+const showUsers = (req, res) => {
+  User.find({})
+    .collation({ locale: "en", strength: 2 })
+    // .sort({ petType: 1 })
+    .then((allUsers) => res.json(allUsers))
+    .catch((err) => res.status(400).json(err));
+};
+
+// const showOnePet = (req, res) => {
+//   Pet.findOne({ _id: req.params._id })
+//     .then((onePet) => res.json(onePet))
+//     .catch((err) => res.status(400).json(err));
+// };
+
+// const updatePet = (req, res) => {
+//   Pet.findOneAndUpdate({ _id: req.params._id }, req.body, {
+//     new: true,
+//     runValidators: true,
+//   })
+//     .then((updatedPet) => res.json(updatedPet))
+//     .catch((err) => res.status(400).json(err));
+// };
+
+// const deletePet = (req, res) => {
+//   Pet.deleteOne({ _id: req.params._id })
+//     .then((result) => res.json(result))
+//     .catch((err) => res.status(400).json(err));
+// };
+
 module.exports = {
   register,
   login,
   logout,
   getLoggedInUser,
+  showUsers,
   // deleteUser,
 };
