@@ -41,7 +41,7 @@ const MainDashboard = (props) => {
     <>
       {user && (
         <div>
-          <h1>Hello {user.firstName}</h1>
+          <h2>Welcome {user.firstName}</h2>
           <RenderUser />
         </div>
       )}
