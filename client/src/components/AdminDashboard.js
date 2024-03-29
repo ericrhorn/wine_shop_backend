@@ -25,6 +25,17 @@ const AdminDashboard = (props) => {
       });
   }, [isLoggedin]);
 
+  const [show, setShow] = useState(false)
+
+  const showUsers = () => {
+    setShow('users')
+  }
+  const showProducts = () => {
+    setShow('products')
+  }
+
+
+
   return (
     <>
       {user && (
@@ -33,11 +44,11 @@ const AdminDashboard = (props) => {
           {/* <h4>Welcome, {user.firstName}!</h4> */}
 
           {/* dashboard container */}
-          <div className="flex h-screen flex-col md:flex-row md:overflow-hidden border-2 m-4">
+          <div className="flex h-screen flex-col rounded md:flex-row md:overflow-hidden overflow-hidden border-2 m-4">
             <div className="w-full flex-none md:w-64">
               <div className="flex h-full flex-col px-3 py-4 md:px-2">
                 <div className="w-full md:h-32 p-2 rounded  bg-blue-600 flex flex-col justify-end">
-                  <h1 style={{ color: "white" }}>Wine Shop</h1>
+                  <h2 style={{ color: "white" }}>Wine Shop</h2>
                 </div>
 
                 <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2 pt-2">
@@ -46,12 +57,14 @@ const AdminDashboard = (props) => {
                     <Button
                       style={{ width: "200px", margin: "5px" }}
                       variant="outlined"
+                      onClick={showProducts}
                     >
                       Products
                     </Button>
                     <Button
                       style={{ width: "200px", margin: "5px" }}
                       variant="outlined"
+                      onClick={showUsers}
                     >
                       Wine Club Members
                     </Button>
@@ -72,7 +85,9 @@ const AdminDashboard = (props) => {
               </div>
             </div>
 
-            <div className=" md:overflow-y-auto md:p-7 bg-white">
+            <div className="overflow-y-auto p-7 md:overflow-y-auto md:p-7 bg-white">
+              {show === "users" ? <UserList /> : null}
+              {show === "products" ? <h2>Products</h2> : null}
               {/* <UserList /> */}
             </div>
           </div>
