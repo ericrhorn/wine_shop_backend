@@ -15,7 +15,7 @@ app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-require("./routes/project.routes")(app);
+require("./routes/product.routes")(app);
 require("./routes/user.routes")(app);
 app.listen(8000, () => {
   console.log("Listening at Port 8000");
