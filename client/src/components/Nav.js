@@ -28,23 +28,28 @@ function HideOnScroll(props) {
 
 export default function Nav(props) {
   const [showMenu, setShowMenu] = useState(false);
-  const { isLoggedin } = props;
+  const { isLoggedin, setIsLoggedin } = props;
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/user/current-user", {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res.data);
-        setUser(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [isLoggedin]);
+useEffect(() => {
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/user/current-user",
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(response.data);
+      setUser(response.data);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
+
+  fetchUserData();
+}, [isLoggedin]);
 
   const logout = () => {
     axios
@@ -55,8 +60,11 @@ export default function Nav(props) {
       )
       .then((res) => {
         setUser(null);
+        // setIsLoggedin(false);
         console.log("successfully logged out");
         navigate("/");
+         setIsLoggedin(false);
+        // window.location.reload();
       })
       .catch((err) => {
         console.log(err);

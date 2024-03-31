@@ -26,7 +26,7 @@ function App() {
     <>
       {/* <BrowserRouter> */}
       <HashRouter basename="/">
-        <Nav isLoggedin={isLoggedin} />
+        <Nav isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin} />
         <Banner />
         <Routes>
           <Route exact path="/" element={<Home />} />

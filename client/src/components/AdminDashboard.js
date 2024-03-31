@@ -4,6 +4,7 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 
 import UserList from "./UserList";
+import NewProducts from "./NewProducts";
 
 const AdminDashboard = (props) => {
   const [user, setUser] = useState(null);
@@ -85,9 +86,9 @@ const AdminDashboard = (props) => {
               </div>
             </div>
 
-            <div className="overflow-y-auto p-7 md:overflow-y-auto md:p-7 bg-white">
+            <div className="overflow-y-auto p-7 md:overflow-y-auto md:p-7 bg-white  w-full">
               {show === "users" ? <UserList /> : null}
-              {show === "products" ? <h2>Products</h2> : null}
+              {show === "products" ? <NewProducts /> : null}
               {/* <UserList /> */}
             </div>
           </div>
