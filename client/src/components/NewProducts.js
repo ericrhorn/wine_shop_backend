@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 import axios from "axios";
+import AdminProductList from "./AdminProductList";
 
 const NewProducts = () => {
   const [errs, setErrs] = useState({});
@@ -182,7 +183,7 @@ const VisuallyHiddenInput = styled("input")({
       </form>
       <Box>
         <Grid>
-          <h4>Product List</h4>
+          <AdminProductList/>
         </Grid>
       </Box>
     </>
