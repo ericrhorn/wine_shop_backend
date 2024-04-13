@@ -82,7 +82,11 @@ function Home() {
             >
               <Item>
                 <div>
-                  <img src={wineClub} alt="" style={{ maxWidth: "150px" }} />
+                  <img
+                    src={wineClub}
+                    alt=""
+                    style={{ maxWidth: "150px", margin: "auto" }}
+                  />
                 </div>
                 <div>
                   <h1
@@ -114,7 +118,11 @@ function Home() {
             >
               <Item>
                 <div>
-                  <img src={tasting} alt="" style={{ maxWidth: "150px" }} />
+                  <img
+                    src={tasting}
+                    alt=""
+                    style={{ maxWidth: "150px", margin: "auto" }}
+                  />
                 </div>
                 <div>
                   <h1
@@ -146,7 +154,11 @@ function Home() {
             >
               <Item>
                 <div>
-                  <img src={food} alt="" style={{ maxWidth: "150px" }} />
+                  <img
+                    src={food}
+                    alt=""
+                    style={{ maxWidth: "150px", margin: "auto" }}
+                  />
                 </div>
                 <div>
                   <h1
@@ -178,7 +190,11 @@ function Home() {
             >
               <Item>
                 <div>
-                  <img src={calendar} alt="" style={{ maxWidth: "150px" }} />
+                  <img
+                    src={calendar}
+                    alt=""
+                    style={{ maxWidth: "150px", margin: "auto" }}
+                  />
                 </div>
                 <div>
                   <h1
