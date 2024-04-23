@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import Dashboard from "../components/Dashboard";
-import Unauthorized from "../components/Unauthorized";
+import Dashboard from "./Dashboard";
+import Unauthorized from "./Unauthorized";
 import AdminDashboard from "./AdminDashboard";
 import ManagerDashboard from "./ManagerDashboard";
-
 
 const MainDashboard = (props) => {
   const [user, setUser] = useState(null);
@@ -27,7 +26,7 @@ const MainDashboard = (props) => {
       });
   }, [isLoggedin]);
 
-  function RenderUser(){
+  function RenderUser() {
     if (user.isAdmin) {
       return <AdminDashboard isLoggedin={isLoggedin} />;
     } else if (user.isManager) {
@@ -41,7 +40,7 @@ const MainDashboard = (props) => {
     <>
       {user && (
         <div>
-          <h2 style={{paddingLeft: '15px'}}>Welcome {user.firstName}</h2>
+          <h2 style={{ paddingLeft: "15px" }}>Welcome {user.firstName}</h2>
           <RenderUser />
         </div>
       )}

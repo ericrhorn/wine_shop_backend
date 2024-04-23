@@ -1,8 +1,7 @@
-import React from 'react'
-import RegistrationForm from '../components/RegistrationForm'
+import React from "react";
+import RegistrationForm from "./RegistrationForm";
 
 const WineClub = (props) => {
-
   const { setIsLoggedin } = props;
 
   return (
@@ -10,13 +9,11 @@ const WineClub = (props) => {
       <div id="container" style={{ height: "100vh" }}>
         <div>WineClub</div>
         <div>
-          <RegistrationForm
-            setIsLoggedin={setIsLoggedin}
-          />
+          <RegistrationForm setIsLoggedin={setIsLoggedin} />
         </div>
       </div>
     </>
   );
-}
+};
 
-export default WineClub
+export default WineClub;
