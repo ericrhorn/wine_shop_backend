@@ -17,6 +17,11 @@ const wineSchema = new mongoose.Schema(
       required: [true, "A wine description is required"],
       // minlength: [3, "Pet description must be more than 3 characters"],
     },
+    winePrice: {
+      type: Number,
+      required: [true, "A Price is required"],
+      // minlength: [3, "Pet description must be more than 3 characters"],
+    },
     // wineImage: {
     //   type: Image,
     // },

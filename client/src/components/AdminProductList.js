@@ -50,6 +50,9 @@ const AdminProductList = () => {
                 <Typography gutterBottom variant="body1" component="div">
                   {product.wineType}
                 </Typography>
+                <Typography gutterBottom variant="body1" component="div">
+                  ${product.winePrice}
+                </Typography>
                 <Typography variant="body2" color="text.secondary">
                   {product.wineDescription}
                 </Typography>

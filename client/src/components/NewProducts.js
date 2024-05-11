@@ -13,6 +13,7 @@ const NewProducts = () => {
     wineName: "",
     wineType: "",
     wineDescription: "",
+    winePrice: "",
   });
 
   const handleChange = (e) => {
@@ -35,6 +36,7 @@ const NewProducts = () => {
           wineName: "",
           wineType: "",
           wineDescription: "",
+          winePrice: "",
         });
       })
       .catch((err) => {
@@ -126,8 +128,29 @@ const VisuallyHiddenInput = styled("input")({
             </Grid>
 
             <Grid item container spacing={2}>
-              <Grid item xs={12} sm={12}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  style={{ backgroundColor: "white" }}
+                  fullWidth
+                  id="winePrice"
+                  className="form-control"
+                  type="text"
+                  name="winePrice"
+                  value={products.winePrice}
+                  onChange={handleChange}
+                  label="Wine Price"
+                  // variant="filled"
+                />
+                <br />
+                {errs.wineType ? (
+                  <span className="error-text" style={{ color: "red" }}>
+                    {errs.winePrice.message}
+                  </span>
+                ) : null}
+              </Grid>
+              <Grid item xs={12} sm={6}>
                 <Button
+                style={{height: "50px"}}
                   component="label"
                   role={undefined}
                   // variant="contained"
@@ -139,6 +162,7 @@ const VisuallyHiddenInput = styled("input")({
                 </Button>
               </Grid>
             </Grid>
+
             <Grid item container spacing={2}>
               <Grid item xs={12} sm={12}>
                 <TextField
@@ -183,7 +207,7 @@ const VisuallyHiddenInput = styled("input")({
       </form>
       <Box>
         <Grid>
-          <AdminProductList/>
+          <AdminProductList />
         </Grid>
       </Box>
     </>
