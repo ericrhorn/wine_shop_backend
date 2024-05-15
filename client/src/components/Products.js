@@ -41,8 +41,11 @@ const Products = () => {
                 <Typography gutterBottom variant="h5" component="div">
                   {product.wineName}
                 </Typography>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="body1" component="div">
                   {product.wineType}
+                </Typography>
+                <Typography gutterBottom variant="body1" component="div">
+                  ${product.winePrice}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   {product.wineDescription}

@@ -14,7 +14,7 @@ module.exports = (app) => {
 
 
   // app.post('/api/user', userController.newUser);
-  // app.get('/api/user/:_id', userController.showOneuUser);
-  // app.put('/api/user/:_id/', userController.updateUser);
+  app.get('/api/user/:_id', UserController.showOneUser);
+  app.put('/api/user/update/:_id/', UserController.updateUser);
   // app.delete('/api/user/:_id', userController.deleteUser);
 };

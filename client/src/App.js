@@ -14,13 +14,12 @@ import AdminDashboard from "./components/AdminDashboard";
 import ManagerDashboard from "./components/ManagerDashboard";
 // import RegistrationForm from "./components/RegistrationForm";
 import MainDashboard from "./components/MainDashboard";
+import UpdateUser from "./components/UpdateUser";
 
 import "@fontsource/open-sans";
 
-
 function App() {
   const [isLoggedin, setIsLoggedin] = useState(false);
-  
 
   return (
     <>
@@ -34,16 +33,12 @@ function App() {
           <Route
             exact
             path="/login"
-            element={
-              <LoginReg setIsLoggedin={setIsLoggedin} />
-            }
+            element={<LoginReg setIsLoggedin={setIsLoggedin} />}
           />
           <Route exact path="/about" element={<About />} />
           <Route
             path="/wineClub"
-            element={
-              <WineCLub  setIsLoggedin={setIsLoggedin} />
-            }
+            element={<WineCLub setIsLoggedin={setIsLoggedin} />}
           />
           {/* <Route
             exact
@@ -59,6 +54,8 @@ function App() {
             path="/MainDashboard"
             element={<MainDashboard isLoggedin={isLoggedin} />}
           />
+          <Route path="/update/:_id" element={<UpdateUser />} />
+
           {/* <Route
             path="/userDashboard"
             element={<Dashboard isLoggedin={isLoggedin} />}

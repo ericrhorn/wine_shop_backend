@@ -30,6 +30,7 @@ const Dashboard = (props) => {
           <h1>Welcome, {user.firstName}!</h1>
           <p>{user.lastName}</p>
           <p>{user.email}</p>
+          <p>{user.clubLevel}</p>
           <p>{user.isAdmin || user.isManager ? "Admin" : "Regular User"}</p>
           <p>{user._id}</p>
           {/* Render other user information here */}

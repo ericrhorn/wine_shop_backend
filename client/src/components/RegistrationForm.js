@@ -12,11 +12,18 @@ const RegistrationForm = (props) => {
     firstName: "",
     lastName: "",
     email: "",
+    clubLevel: "",
     password: "",
     confirmPassword: "",
     isAdmin: false,
     isManager: false,
   });
+
+  const wineClubLevels = [
+    {value: "Silver", name: "Silver"},
+    {value: "Gold", name: "Gold"},
+    {value: "Platinum", name: "Platinum"},
+  ]
 
   const handleChange = (e) => {
     setUser({
@@ -108,6 +115,32 @@ const RegistrationForm = (props) => {
               value={user.email}
               onChange={handleChange}
             />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="clubLevel">Wine Club Level</label>
+            <br />
+            {errs.clubLevel ? (
+              <span className="error-text" style={{ color: "red" }}>
+                {errs.clubLevel.message}
+              </span>
+            ) : null}
+            <select
+              id="clubLevel"
+              className="form-control"
+              type="text"
+              name="clubLevel"
+              value={user.clubLevel}
+              onChange={handleChange}
+            >
+              <option value="" disabled selected>
+                Select Wine Club Level
+              </option>
+              {wineClubLevels.map((options) => (
+                <option key={options.value} value={options.value}>
+                  {options.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="mb-3">
             <label htmlFor="password">Password</label>

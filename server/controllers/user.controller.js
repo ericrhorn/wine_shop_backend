@@ -115,20 +115,20 @@ const showUsers = (req, res) => {
     .catch((err) => res.status(400).json(err));
 };
 
-// const showOnePet = (req, res) => {
-//   Pet.findOne({ _id: req.params._id })
-//     .then((onePet) => res.json(onePet))
-//     .catch((err) => res.status(400).json(err));
-// };
+const showOneUser = (req, res) => {
+  User.findOne({ _id: req.params._id })
+    .then((oneUser) => res.json(oneUser))
+    .catch((err) => res.status(400).json(err));
+};
 
-// const updatePet = (req, res) => {
-//   Pet.findOneAndUpdate({ _id: req.params._id }, req.body, {
-//     new: true,
-//     runValidators: true,
-//   })
-//     .then((updatedPet) => res.json(updatedPet))
-//     .catch((err) => res.status(400).json(err));
-// };
+const updateUser = (req, res) => {
+  User.findOneAndUpdate({ _id: req.params._id }, req.body, {
+    new: true,
+    runValidators: true,
+  })
+    .then((updatedUser) => res.json(updatedUser))
+    .catch((err) => res.status(400).json(err));
+};
 
 // const deletePet = (req, res) => {
 //   Pet.deleteOne({ _id: req.params._id })
@@ -142,5 +142,7 @@ module.exports = {
   logout,
   getLoggedInUser,
   showUsers,
+  updateUser,
+  showOneUser,
   // deleteUser,
 };

@@ -21,8 +21,12 @@ const userSchema = mongoose.Schema(
         message: "Please enter a valid email",
       },
     },
+    clubLevel: {
+      type: String,
+      required: [true, "A Wine Club Level is required"],
+    },
     isAdmin: { type: Boolean, default: false },
-    isManager: { type: Boolean, default: false},
+    isManager: { type: Boolean, default: false },
     password: {
       type: String,
       required: [true, "A password is required"],

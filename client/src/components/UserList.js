@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
+
 
 const UserList = (props) => {
   const [userList, setUserList] = useState([]);
@@ -20,9 +22,13 @@ const UserList = (props) => {
       <table className="md:border-spacing-4">
         <thead>
           <tr>
+            <th className="p-4 border border-black bg-slate-200">id</th>
             <th className="p-4 border border-black bg-slate-200">User Name</th>
-            <th className="p-4 border border-black bg-slate-200 hidden sm:table-cell">
+            <th className="p-4 border border-black bg-slate-200 hidden lg:table-cell">
               User Email
+            </th>
+            <th className="p-4 border border-black bg-slate-200 hidden sm:table-cell">
+              Wine Club
             </th>
             {/* Hide on smaller screens */}
             <th className="p-4 border border-black bg-slate-200 hidden lg:table-cell">
@@ -35,10 +41,16 @@ const UserList = (props) => {
           {userList.map((user, idx) => (
             <tr key={idx}>
               <td className="p-4 border border-slate-700">
+                {user._id}
+              </td>
+              <td className="p-4 border border-slate-700">
                 {user.firstName} {user.lastName}
               </td>
-              <td className="p-4 border border-slate-700 hidden sm:table-cell">
+              <td className="p-4 border border-slate-700 hidden lg:table-cell">
                 {user.email}
+              </td>
+              <td className="p-4 border border-slate-700 hidden sm:table-cell">
+                {user.clubLevel}
               </td>
               {/* Hide on smaller screens */}
               <td className="p-4 border border-slate-700 hidden lg:table-cell">
@@ -46,12 +58,16 @@ const UserList = (props) => {
               </td>
               <td className="p-4 border border-slate-700 flex flex-col md:flex-row">
                 <div className="md:mr-2">
-                  <Button variant="outlined">Edit</Button>
+                  <Link to={`/update/${user._id}`}>
+                    <Button variant="outlined">Edit</Button>
+                  </Link>
                 </div>
                 <div className="md:mr-2 md:mt-0">
-                  <Button color="error" variant="outlined">
-                    Delete
-                  </Button>
+                  <Link>
+                    <Button color="error" variant="outlined">
+                      Delete
+                    </Button>
+                  </Link>
                 </div>
               </td>
             </tr>
