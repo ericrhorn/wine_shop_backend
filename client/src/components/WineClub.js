@@ -7,8 +7,7 @@ const WineClub = (props) => {
   return (
     <>
       <div id="container" style={{ height: "100vh" }}>
-        <div>WineClub</div>
-        <div>
+        <div style={{width: '60%', margin:'auto'}}>
           <RegistrationForm setIsLoggedin={setIsLoggedin} />
         </div>
       </div>
