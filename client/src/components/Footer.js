@@ -1,9 +1,13 @@
 import React from "react";
 import LoginReg from "./LoginReg";
 
-function Footer() {
+function Footer(props) {
+
+  const { setIsLoggedin } = props;
+
   return (
     <div
+      id="footer"
       className="grid grid-cols-1 md:grid-cols-3"
       style={{ backgroundColor: "black", minHeight: "500px" }}
     >
@@ -31,7 +35,7 @@ function Footer() {
       </div>
       <div className="border-white border-1 flex">
         <div className="m-auto">
-          <LoginReg />
+          <LoginReg setIsLoggedin={setIsLoggedin} />
         </div>
       </div>
     </div>

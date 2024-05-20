@@ -30,6 +30,10 @@ const LoginReg = (props) => {
         console.log(res.data);
         setIsLoggedin(true);
         setErrs("");
+        setUser({
+          email: "",
+          password: "",
+        });
         navigate("/MainDashboard");
       })
       .catch((err) => {
@@ -40,8 +44,8 @@ const LoginReg = (props) => {
 
   return (
     <>
-      <div id="container" style={{ margin: 'auto'}}>
-        <div style={{ maxWidth: '300px' }}>
+      <div id="container" style={{ margin: "auto" }}>
+        <div style={{ maxWidth: "300px" }}>
           <form onSubmit={login}>
             <Box
               display="flex"
@@ -57,7 +61,7 @@ const LoginReg = (props) => {
                 <Grid item container spacing={2}>
                   <Grid item container spacing={2}>
                     <Grid item xs={12} sm={12}>
-                      <h4 style={{color: 'white'}}>User Login</h4>
+                      <h4 style={{ color: "white" }}>Wine Club Login</h4>
                       <p className="error-text" style={{ color: "red" }}>
                         {errs ? errs : ""}
                       </p>
@@ -122,42 +126,6 @@ const LoginReg = (props) => {
         </div>
       </div>
     </>
-    // <div
-    //   className="container mt-5 rounded-3 shadow p-3 bg-body"
-    //   style={{ width: 500, backgroundColor: "white" }}
-    // >
-    //   <h2>User Login</h2>
-    //   <p className="error-text" style={{ color: "red" }}>
-    //     {errs ? errs : ""}
-    //   </p>
-    //   <form onSubmit={login}>
-    //     <div className="mb-3 mt-3">
-    //       <label>Email</label>
-    //       <br />
-    //       <input
-    //         className="form-control"
-    //         type="text"
-    //         name="email"
-    //         value={user.email}
-    //         onChange={handleChange}
-    //       />
-    //     </div>
-    //     <div className="mb-3">
-    //       <label>Password</label>
-    //       <br />
-    //       <input
-    //         className="form-control"
-    //         type="password"
-    //         name="password"
-    //         value={user.password}
-    //         onChange={handleChange}
-    //       />
-    //     </div>
-    //     <button type="submit" className="btn btn-primary">
-    //       Submit
-    //     </button>
-    //   </form>
-    // </div>
   );
 };
 

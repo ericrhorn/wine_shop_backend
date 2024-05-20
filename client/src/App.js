@@ -1,6 +1,6 @@
 // import './App.css';
 import { useState } from "react";
-import { BrowserRouter, HashRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import Home from "./components/Home";
 import Store from "./components/Store";
@@ -9,10 +9,6 @@ import About from "./components/About";
 import Banner from "./components/Banner";
 import Footer from "./components/Footer";
 import WineCLub from "./components/WineClub";
-import Dashboard from "./components/Dashboard";
-import AdminDashboard from "./components/AdminDashboard";
-import ManagerDashboard from "./components/ManagerDashboard";
-// import RegistrationForm from "./components/RegistrationForm";
 import MainDashboard from "./components/MainDashboard";
 import UpdateUser from "./components/UpdateUser";
 
@@ -40,40 +36,14 @@ function App() {
             path="/wineClub"
             element={<WineCLub setIsLoggedin={setIsLoggedin} />}
           />
-          {/* <Route
-            exact
-            path="/register"
-            element={
-              <RegistrationForm
-              isLoggedin={isLoggedin}
-              setIsLoggedin={setIsLoggedin}
-              />
-            }
-          /> */}
           <Route
             path="/MainDashboard"
             element={<MainDashboard isLoggedin={isLoggedin} />}
           />
           <Route path="/update/:_id" element={<UpdateUser />} />
-
-          {/* <Route
-            path="/userDashboard"
-            element={<Dashboard isLoggedin={isLoggedin} />}
-          />
-          <Route
-            path="/adminDashboard"
-            element={<AdminDashboard isLoggedin={isLoggedin} />}
-          />
-          <Route
-            path="/managerDashboard"
-            element={<ManagerDashboard isLoggedin={isLoggedin} />}
-          /> */}
         </Routes>
-        <Footer />
+        <Footer isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin} />
       </HashRouter>
-
-      {/* </BrowserRouter> */}
-      {/* <Footer/> */}
     </>
   );
 }

@@ -3,11 +3,11 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Slide from "@mui/material/Slide";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 
 import WineBarIcon from "@mui/icons-material/WineBar";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import "../style/nav.css";
 
 import MenuIcon from "@mui/icons-material/Menu";
@@ -32,24 +32,24 @@ export default function Nav(props) {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
-useEffect(() => {
-  const fetchUserData = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:8000/api/user/current-user",
-        {
-          withCredentials: true,
-        }
-      );
-      console.log(response.data);
-      setUser(response.data);
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-    }
-  };
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/api/user/current-user",
+          {
+            withCredentials: true,
+          }
+        );
+        console.log(response.data);
+        setUser(response.data);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
 
-  fetchUserData();
-}, [isLoggedin]);
+    fetchUserData();
+  }, [isLoggedin]);
 
   const logout = () => {
     axios
@@ -63,7 +63,7 @@ useEffect(() => {
         // setIsLoggedin(false);
         console.log("successfully logged out");
         navigate("/");
-         setIsLoggedin(false);
+        setIsLoggedin(false);
         // window.location.reload();
       })
       .catch((err) => {
@@ -78,7 +78,6 @@ useEffect(() => {
   const closeMenu = () => {
     setShowMenu(false);
   };
-
 
   return (
     <React.Fragment>
@@ -177,9 +176,14 @@ useEffect(() => {
                   <Link to="/wineClub" relative="path">
                     Wine Club
                   </Link>
-                  <Link to="/login" relative="path">
+                  <ScrollLink
+                    to="footer"
+                    smooth={true}
+                    duration={100}
+                    className="cursor-pointer"
+                  >
                     Login
-                  </Link>
+                  </ScrollLink>
                 </div>
                 <div className="hamIcon" onClick={openMenu}>
                   {showMenu ? (
@@ -203,9 +207,15 @@ useEffect(() => {
                   <Link onClick={closeMenu} to="/wineClub" relative="path">
                     Wine Club
                   </Link>
-                  <Link onClick={closeMenu} to="/login" relative="path">
+                  <ScrollLink
+                    onClick={closeMenu}
+                    to="footer"
+                    smooth={true}
+                    duration={100}
+                    className="cursor-pointer"
+                  >
                     Login
-                  </Link>
+                  </ScrollLink>
                 </nav>
               )}
             </Toolbar>

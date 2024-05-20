@@ -14,9 +14,6 @@ export const ContactForm = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    // const serviceID = "service_lekbue6";
-    // const templateID = "template_j0yuh8s";
-    // const publicKey = "SEqqj_teFINnSIQ3j";
 
     const serviceID = process.env.REACT_APP_SERVICE_ID;
     const templateID = process.env.REACT_APP_TEMPLATE_ID;
@@ -41,10 +38,6 @@ export const ContactForm = () => {
         templateID,
         templateParams,
         publicKey
-        // process.env.REACT_APP_PUBLIC_KEY,
-        // process.env.REACT_APP_SERVICE_ID,
-        // process.env.REACT_APP_TEMPLATE_ID,
-        // templateParams
       );
       reset();
     } catch (error) {
