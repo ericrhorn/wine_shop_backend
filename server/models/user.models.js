@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const uniqueValidator = require("mongoose-unique-validator");
 const bcrypt = require("bcrypt");
 
 const userSchema = mongoose.Schema(
@@ -16,6 +17,7 @@ const userSchema = mongoose.Schema(
     email: {
       type: String,
       required: [true, "An email is required"],
+      unique: [true, "An email is unique"],
       validate: {
         validator: (val) => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val),
         message: "Please enter a valid email",
@@ -35,6 +37,9 @@ const userSchema = mongoose.Schema(
   },
   { timestamps: true }
 );
+
+
+userSchema.plugin(uniqueValidator, { message: "This email is already in use" });
 
 // Virtual field
 //  store information from our request, but it will not be saved in the DB
@@ -73,5 +78,6 @@ userSchema.pre("save", function (next) {
 // mongoose will make it lowercase AND plurl... collection name: users
 
 const User = mongoose.model("User", userSchema);
+
 
 module.exports = User;

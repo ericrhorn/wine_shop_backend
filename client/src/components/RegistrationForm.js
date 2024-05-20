@@ -293,13 +293,15 @@ const RegistrationForm = (props) => {
                   variant="filled"
                   name="clubLevel"
                   className="form-control formInput"
-                  {...register("clubLevel", {
-                    required: {
-                      value: true,
-                      message: "Please select an option",
-                    },
-                  })}
                   onChange={handleChange}
+                  value={user.clubLevel}
+
+                  // {...register("clubLevel", {
+                  //   required: {
+                  //     value: true,
+                  //     message: "Please select an option",
+                  //   },
+                  // })}
                 >
                   <MenuItem value="">Select Wine Club Level</MenuItem>
                   {wineClubLevels.map((option) => (
