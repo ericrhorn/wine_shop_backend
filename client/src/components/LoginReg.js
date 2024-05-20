@@ -34,6 +34,7 @@ const LoginReg = (props) => {
           email: "",
           password: "",
         });
+        window.scrollTo({ top: 0, behavior: "smooth" });
         navigate("/MainDashboard");
       })
       .catch((err) => {
@@ -62,11 +63,11 @@ const LoginReg = (props) => {
                   <Grid item container spacing={2}>
                     <Grid item xs={12} sm={12}>
                       <h4 style={{ color: "white" }}>Wine Club Login</h4>
-                      <p className="error-text" style={{ color: "red" }}>
+                      {/* <p className="error-text" style={{ color: "red" }}>
                         {errs ? errs : ""}
-                      </p>
+                      </p> */}
                       <TextField
-                        style={{ backgroundColor: "white" }}
+                        style={{ backgroundColor: "white", color: "white" }}
                         fullWidth
                         id="email"
                         className="form-control"
@@ -75,13 +76,15 @@ const LoginReg = (props) => {
                         value={user.email}
                         onChange={handleChange}
                         label="Email"
+                        error={!!errs} // Convert errs.email to a boolean value
+                        helperText={errs && errs}
                       />
-                      <br />
+                      {/* <br />
                       {errs.email ? (
                         <span className="error-text" style={{ color: "red" }}>
                           {errs.email.message}
                         </span>
-                      ) : null}
+                      ) : null} */}
                     </Grid>
                   </Grid>
                   <Grid item container spacing={2}>
@@ -97,13 +100,15 @@ const LoginReg = (props) => {
                         name="password"
                         value={user.password}
                         onChange={handleChange}
+                        error={!!errs} // Convert errs.email to a boolean value
+                        helperText={errs && errs}
                       />
-                      <br />
+                      {/* <br />
                       {errs.password ? (
                         <span className="error-text" style={{ color: "red" }}>
                           {errs.password.message}
                         </span>
-                      ) : null}
+                      ) : null} */}
                     </Grid>
                   </Grid>
                   <Grid

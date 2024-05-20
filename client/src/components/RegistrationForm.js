@@ -91,13 +91,15 @@ const RegistrationForm = (props) => {
                   name="firstName"
                   value={user.firstName}
                   onChange={handleChange}
+                  error={!!errs.firstName} // Convert errs.email to a boolean value
+                  helperText={errs.firstName && errs.firstName.message}
                 />
-                <br />
+                {/* <br />
                 {errs.firstName ? (
                   <span className="error-text" style={{ color: "red" }}>
                     {errs.firstName.message}
                   </span>
-                ) : null}
+                ) : null} */}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -110,14 +112,16 @@ const RegistrationForm = (props) => {
                   value={user.lastName}
                   onChange={handleChange}
                   label="Last Name"
+                  error={!!errs.lastName} // Convert errs.email to a boolean value
+                  helperText={errs.lastName && errs.lastName.message}
                   // variant="filled"
                 />
-                <br />
+                {/* <br />
                 {errs.lastName ? (
                   <span className="error-text" style={{ color: "red" }}>
                     {errs.lastName.message}
                   </span>
-                ) : null}
+                ) : null} */}
               </Grid>
             </Grid>
 
@@ -133,14 +137,16 @@ const RegistrationForm = (props) => {
                   value={user.email}
                   onChange={handleChange}
                   label="Email"
+                  error={!!errs.email} // Convert errs.email to a boolean value
+                  helperText={errs.email && errs.email.message}
                   // variant="filled"
                 />
-                <br />
-                {errs.email ? (
+                {/* <br /> */}
+                {/* {errs.email ? (
                   <span className="error-text" style={{ color: "red" }}>
                     {errs.email.message}
                   </span>
-                ) : null}
+                ) : null} */}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -154,6 +160,8 @@ const RegistrationForm = (props) => {
                   className="form-control formInput"
                   onChange={handleChange}
                   value={user.clubLevel}
+                  error={!!errs.clubLevel} // Convert errs.email to a boolean value
+                  helperText={errs.clubLevel && errs.clubLevel.message}
 
                   // {...register("clubLevel", {
                   //   required: {
@@ -170,11 +178,11 @@ const RegistrationForm = (props) => {
                   ))}
                 </TextField>
 
-                {errs.clubLevel && (
+                {/* {errs.clubLevel && (
                   <span className="errorMessage" style={{ color: "red" }}>
                     {errs.clubLevel.message}
                   </span>
-                )}
+                )} */}
               </Grid>
             </Grid>
 
@@ -191,13 +199,15 @@ const RegistrationForm = (props) => {
                   name="password"
                   value={user.password}
                   onChange={handleChange}
+                  error={!!errs.password} // Convert errs.email to a boolean value
+                  helperText={errs.password && errs.password.message}
                 />
-                <br />
+                {/* <br />
                 {errs.password ? (
                   <span className="error-text" style={{ color: "red" }}>
                     {errs.password.message}
                   </span>
-                ) : null}
+                ) : null} */}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
