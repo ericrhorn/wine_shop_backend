@@ -1,23 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, TextField, Button, MenuItem, Grid } from "@mui/material";
-import { useForm } from "react-hook-form";
-
 import axios from "axios";
+import { Box, TextField, Button, MenuItem, Grid } from "@mui/material";
+
 
 const RegistrationForm = (props) => {
   const [errs, setErrs] = useState({});
   const { setIsLoggedin } = props;
 
   const navigate = useNavigate();
-
-  const {
-    register,
-    // handleSubmit,
-    // reset,
-    watch,
-    // formState: { errs },
-  } = useForm();
 
   const [user, setUser] = useState({
     firstName: "",
@@ -54,13 +45,6 @@ const RegistrationForm = (props) => {
         setIsLoggedin(true);
         setErrs("");
         navigate("/MainDashboard");
-        // if (res.data.user.isAdmin) {
-        //   navigate("/adminDashboard"); // Navigate to admin dashboard
-        // } else if (res.data.user.isManager) {
-        //   navigate("/managerDashboard"); // Navigate to manager dashboard
-        // } else {
-        //   navigate("/dashboard"); // Navigate to regular user dashboard
-        // }
       })
       .catch((err) => {
         console.log(err);
@@ -70,131 +54,6 @@ const RegistrationForm = (props) => {
 
   return (
     <>
-      {/* <div
-        className="container mt-5 rounded-3 shadow p-3 bg-body"
-        style={{ width: 500, backgroundColor: "white" }}
-      >
-        <h2>Register</h2>
-        <form onSubmit={registerUser}>
-          <div className="mb-3 mt-3">
-            <label htmlFor="firstName">First Name</label>
-            <br />
-            {errs.firstName ? (
-              <span className="error-text" style={{ color: "red" }}>
-                {errs.firstName.message}
-              </span>
-            ) : null}
-            <input
-              id="firstName"
-              className="form-control"
-              type="text"
-              name="firstName"
-              value={user.firstName}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="lastName">Last Name</label>
-            <br />
-            {errs.lastName ? (
-              <span className="error-text" style={{ color: "red" }}>
-                {errs.lastName.message}
-              </span>
-            ) : null}
-            <input
-              id="lastName"
-              className="form-control"
-              type="text"
-              name="lastName"
-              value={user.lastName}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="email">Email</label>
-            <br />
-            {errs.email ? (
-              <span className="error-text" style={{ color: "red" }}>
-                {errs.email.message}
-              </span>
-            ) : null}
-            <input
-              id="email"
-              className="form-control"
-              type="email"
-              name="email"
-              value={user.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="clubLevel">Wine Club Level</label>
-            <br />
-            {errs.clubLevel ? (
-              <span className="error-text" style={{ color: "red" }}>
-                {errs.clubLevel.message}
-              </span>
-            ) : null}
-            <select
-              id="clubLevel"
-              className="form-control"
-              type="text"
-              name="clubLevel"
-              value={user.clubLevel}
-              onChange={handleChange}
-            >
-              <option value="" disabled selected>
-                Select Wine Club Level
-              </option>
-              {wineClubLevels.map((options) => (
-                <option key={options.value} value={options.value}>
-                  {options.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="mb-3">
-            <label htmlFor="password">Password</label>
-            <br />
-            {errs.password ? (
-              <span className="error-text" style={{ color: "red" }}>
-                {errs.password.message}
-              </span>
-            ) : null}
-            <input
-              id="password"
-              className="form-control"
-              type="password"
-              name="password"
-              value={user.password}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="passwordComp">Password Confirmation</label>
-            <br />
-            {errs.confirmPassword ? (
-              <span className="error-text" style={{ color: "red" }}>
-                {errs.confirmPassword.message}
-              </span>
-            ) : null}
-            <input
-              id="passwordComp"
-              className="form-control"
-              type="password"
-              name="confirmPassword"
-              value={user.confirmPassword}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <button className="btn btn-primary" type="submit">
-              Register
-            </button>
-          </div>
-        </form>
-      </div> */}
-
       <form onSubmit={registerUser}>
         <Box
           display="flex"

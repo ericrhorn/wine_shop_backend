@@ -51,7 +51,7 @@ const login = async (req, res) => {
   const userRecord = await User.findOne({ email: req.body.email });
   console.log("user record", userRecord);
   if (!userRecord) {
-    res.status(400).json({ error: "invalid email or password" });
+    res.status(400).json({ error: "Invalid Email or Password" });
   } else {
     try {
       const isPasswordValid = await bcrypt.compare(
@@ -59,7 +59,7 @@ const login = async (req, res) => {
         userRecord.password
       );
       if (!isPasswordValid) {
-        res.status(400).json({ error: "invalid email or password" });
+        res.status(400).json({ error: "Invalid Email or Password" });
       } else {
         const userToken = jwt.sign(
           {

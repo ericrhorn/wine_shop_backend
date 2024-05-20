@@ -69,8 +69,9 @@ function App() {
             element={<ManagerDashboard isLoggedin={isLoggedin} />}
           /> */}
         </Routes>
+        <Footer />
       </HashRouter>
-      <Footer />
+
       {/* </BrowserRouter> */}
       {/* <Footer/> */}
     </>

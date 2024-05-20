@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Box, TextField, Button, Grid } from "@mui/material";
 
 const LoginReg = (props) => {
   const navigate = useNavigate();
@@ -30,13 +31,6 @@ const LoginReg = (props) => {
         setIsLoggedin(true);
         setErrs("");
         navigate("/MainDashboard");
-        // if (res.data.user.isAdmin) {
-        //   navigate("/adminDashboard"); // Navigate to admin dashboard
-        // } else if (res.data.user.isManager) {
-        //   navigate("/managerDashboard"); // Navigate to manager dashboard
-        // } else {
-        //   navigate("/dashboard"); // Navigate to regular user dashboard
-        // }
       })
       .catch((err) => {
         console.log(err.response.data.error);
@@ -45,42 +39,125 @@ const LoginReg = (props) => {
   };
 
   return (
-    <div
-      className="container mt-5 rounded-3 shadow p-3 bg-body"
-      style={{ width: 500, backgroundColor: "white" }}
-    >
-      <h2>User Login</h2>
-      <p className="error-text" style={{ color: "red" }}>
-        {errs ? errs : ""}
-      </p>
-      <form onSubmit={login}>
-        <div className="mb-3 mt-3">
-          <label>Email</label>
-          <br />
-          <input
-            className="form-control"
-            type="text"
-            name="email"
-            value={user.email}
-            onChange={handleChange}
-          />
+    <>
+      <div id="container" style={{ margin: 'auto'}}>
+        <div style={{ maxWidth: '300px' }}>
+          <form onSubmit={login}>
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+              style={{
+                width: "100%",
+                padding: "20px",
+              }}
+            >
+              <Grid container spacing={2} direction="column">
+                <Grid item container spacing={2}>
+                  <Grid item container spacing={2}>
+                    <Grid item xs={12} sm={12}>
+                      <h4 style={{color: 'white'}}>User Login</h4>
+                      <p className="error-text" style={{ color: "red" }}>
+                        {errs ? errs : ""}
+                      </p>
+                      <TextField
+                        style={{ backgroundColor: "white" }}
+                        fullWidth
+                        id="email"
+                        className="form-control"
+                        type="text"
+                        name="email"
+                        value={user.email}
+                        onChange={handleChange}
+                        label="Email"
+                      />
+                      <br />
+                      {errs.email ? (
+                        <span className="error-text" style={{ color: "red" }}>
+                          {errs.email.message}
+                        </span>
+                      ) : null}
+                    </Grid>
+                  </Grid>
+                  <Grid item container spacing={2}>
+                    <Grid item xs={12} sm={12}>
+                      <TextField
+                        style={{ backgroundColor: "white" }}
+                        fullWidth
+                        label="Password"
+                        // variant="filled"
+                        id="password"
+                        className="form-control"
+                        type="password"
+                        name="password"
+                        value={user.password}
+                        onChange={handleChange}
+                      />
+                      <br />
+                      {errs.password ? (
+                        <span className="error-text" style={{ color: "red" }}>
+                          {errs.password.message}
+                        </span>
+                      ) : null}
+                    </Grid>
+                  </Grid>
+                  <Grid
+                    item
+                    container
+                    spacing={2}
+                    // alignItems="center"
+                    // justifyContent="center"
+                  >
+                    <Grid item>
+                      <Button type="submit" variant="contained">
+                        Login
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Box>
+          </form>
         </div>
-        <div className="mb-3">
-          <label>Password</label>
-          <br />
-          <input
-            className="form-control"
-            type="password"
-            name="password"
-            value={user.password}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
-    </div>
+      </div>
+    </>
+    // <div
+    //   className="container mt-5 rounded-3 shadow p-3 bg-body"
+    //   style={{ width: 500, backgroundColor: "white" }}
+    // >
+    //   <h2>User Login</h2>
+    //   <p className="error-text" style={{ color: "red" }}>
+    //     {errs ? errs : ""}
+    //   </p>
+    //   <form onSubmit={login}>
+    //     <div className="mb-3 mt-3">
+    //       <label>Email</label>
+    //       <br />
+    //       <input
+    //         className="form-control"
+    //         type="text"
+    //         name="email"
+    //         value={user.email}
+    //         onChange={handleChange}
+    //       />
+    //     </div>
+    //     <div className="mb-3">
+    //       <label>Password</label>
+    //       <br />
+    //       <input
+    //         className="form-control"
+    //         type="password"
+    //         name="password"
+    //         value={user.password}
+    //         onChange={handleChange}
+    //       />
+    //     </div>
+    //     <button type="submit" className="btn btn-primary">
+    //       Submit
+    //     </button>
+    //   </form>
+    // </div>
   );
 };
 
