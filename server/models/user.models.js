@@ -54,7 +54,7 @@ userSchema
 userSchema.pre("validate", function (next) {
   console.log("inside pre-validate");
   if (this.password !== this.confirmPassword) {
-    this.invalidate("confirmPassword", "Password must match confirm password");
+    this.invalidate("confirmPassword", "Passwords do not match");
   }
   next();
 });

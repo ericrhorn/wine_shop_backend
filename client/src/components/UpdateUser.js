@@ -30,13 +30,21 @@ const UpdateUser = (props) => {
 
   return (
     <>
-      <div>
-        <p>{user._id}</p>
-        <p>{user.firstName}</p>
-        <p>{user.lastName}</p>
-        <p>{user.email}</p>
-        <p>{user.clubLevel}</p>
-      </div>
+      {user ? (
+        <div>
+          <p>{user._id}</p>
+          <p>{user.firstName}</p>
+          <p>{user.lastName}</p>
+          <p>{user.email}</p>
+          <p>{user.clubLevel}</p>
+        </div>
+      ) : (
+        <div className="m-5 flex justify-center items-center h-max">
+          <div>
+            <h1>User Not Found</h1>
+          </div>
+        </div>
+      )}
     </>
   );
 };

@@ -220,14 +220,18 @@ const RegistrationForm = (props) => {
                   value={user.confirmPassword}
                   onChange={handleChange}
                   label="Confirm Password"
+                  error={!!errs.confirmPassword} // Convert errs.email to a boolean value
+                  helperText={
+                    errs.confirmPassword && errs.confirmPassword.message
+                  }
                   // variant="filled"
                 />
-                <br />
+                {/* <br />
                 {errs.confirmPassword ? (
                   <span className="error-text" style={{ color: "red" }}>
                     {errs.confirmPassword.message}
                   </span>
-                ) : null}
+                ) : null} */}
               </Grid>
             </Grid>
             <Grid

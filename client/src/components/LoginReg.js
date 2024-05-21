@@ -126,6 +126,9 @@ const LoginReg = (props) => {
                   </Grid>
                 </Grid>
               </Grid>
+              <Grid className="mt-2">
+                <a href="">Forgot Password?</a>
+              </Grid>
             </Box>
           </form>
         </div>
