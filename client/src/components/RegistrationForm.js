@@ -27,12 +27,36 @@ const RegistrationForm = (props) => {
     { value: "Platinum", label: "Platinum" },
   ];
 
-  const handleChange = (e) => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value,
-    });
-  };
+const handleChange = (e) => {
+  const { name, value } = e.target;
+
+  // Clear specific error for the field being changed
+  setErrs((prevErrs) => {
+    const { [name]: removedError, ...remainingErrors } = prevErrs;
+    return remainingErrors;
+  });
+
+  // Update user state
+  setUser((prevUser) => {
+    const updatedUser = { ...prevUser, [name]: value };
+
+    // Check for password match validation
+    if (name === "password" || name === "confirmPassword") {
+      if (updatedUser.password !== updatedUser.confirmPassword) {
+        setErrs((prevErrs) => ({
+          ...prevErrs,
+          confirmPassword: { message: "Passwords do not match" },
+        }));
+      } else {
+        setErrs((prevErrs) => {
+          const { confirmPassword, ...remainingErrors } = prevErrs;
+          return remainingErrors;
+        });
+      }
+    }
+    return updatedUser;
+  });
+};
 
   const registerUser = (e) => {
     e.preventDefault();
@@ -43,12 +67,12 @@ const RegistrationForm = (props) => {
       .then((res) => {
         console.log("here is the data", res.data);
         setIsLoggedin(true);
-        setErrs("");
+        setErrs({});
         navigate("/MainDashboard");
       })
       .catch((err) => {
         console.log(err);
-        setErrs(err.response.data.errors);
+        setErrs(err.response.data.errors || {});
       });
   };
 
