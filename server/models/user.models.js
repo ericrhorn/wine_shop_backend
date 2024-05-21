@@ -17,7 +17,7 @@ const userSchema = mongoose.Schema(
     email: {
       type: String,
       required: [true, "An email is required"],
-      unique: [true, "An email is unique"],
+      // unique: [true, "An email is unique"],
       validate: {
         validator: (val) => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val),
         message: "Please enter a valid email",
@@ -39,7 +39,7 @@ const userSchema = mongoose.Schema(
 );
 
 
-userSchema.plugin(uniqueValidator, { message: "This email is already in use" });
+// userSchema.plugin(uniqueValidator, { message: "This email is already in use" });
 
 // Virtual field
 //  store information from our request, but it will not be saved in the DB

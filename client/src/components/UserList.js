@@ -40,9 +40,7 @@ const UserList = (props) => {
         <tbody>
           {userList.map((user, idx) => (
             <tr key={idx}>
-              <td className="p-4 border border-slate-700">
-                {user._id}
-              </td>
+              <td className="p-4 border border-slate-700">{user._id}</td>
               <td className="p-4 border border-slate-700">
                 {user.firstName} {user.lastName}
               </td>
@@ -54,7 +52,11 @@ const UserList = (props) => {
               </td>
               {/* Hide on smaller screens */}
               <td className="p-4 border border-slate-700 hidden lg:table-cell">
-                {user.isAdmin || user.isManager ? "Admin" : "Regular User"}
+                {user.isAdmin
+                  ? "Admin"
+                  : user.isManager
+                  ? "Manager"
+                  : "Regular User"}
               </td>
               <td className="p-4 border border-slate-700 flex flex-col md:flex-row">
                 <div className="md:mr-2">

@@ -17,6 +17,10 @@ const NewProducts = () => {
   });
 
   const handleChange = (e) => {
+    setErrs((prevErrs) => {
+      const { [e.target.name]: removedError,...remainingErrors } = prevErrs;
+      return remainingErrors;
+    });
     setProducts({
       ...products,
       [e.target.name]: e.target.value,
@@ -97,13 +101,15 @@ const VisuallyHiddenInput = styled("input")({
                   name="wineName"
                   value={products.wineName}
                   onChange={handleChange}
+                  error={!!errs.wineName}
+                  helperText={errs.wineName && errs.wineName.message}
                 />
-                <br />
+                {/* <br />
                 {errs.wineName ? (
                   <span className="error-text" style={{ color: "red" }}>
                     {errs.wineName.message}
                   </span>
-                ) : null}
+                ) : null} */}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -116,14 +122,16 @@ const VisuallyHiddenInput = styled("input")({
                   value={products.wineType}
                   onChange={handleChange}
                   label="Wine Type"
+                  error={!!errs.wineType}
+                  helperText={errs.wineType && errs.wineType.message}
                   // variant="filled"
                 />
-                <br />
+                {/* <br />
                 {errs.wineType ? (
                   <span className="error-text" style={{ color: "red" }}>
                     {errs.wineType.message}
                   </span>
-                ) : null}
+                ) : null} */}
               </Grid>
             </Grid>
 
@@ -139,18 +147,20 @@ const VisuallyHiddenInput = styled("input")({
                   value={products.winePrice}
                   onChange={handleChange}
                   label="Wine Price"
+                  error={!!errs.winePrice}
+                  helperText={errs.winePrice && errs.winePrice.message}
                   // variant="filled"
                 />
-                <br />
+                {/* <br />
                 {errs.wineType ? (
                   <span className="error-text" style={{ color: "red" }}>
                     {errs.winePrice.message}
                   </span>
-                ) : null}
+                ) : null} */}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Button
-                style={{height: "50px"}}
+                  style={{ height: "50px" }}
                   component="label"
                   role={undefined}
                   // variant="contained"
@@ -180,13 +190,15 @@ const VisuallyHiddenInput = styled("input")({
                   name="wineDescription"
                   value={products.wineDescription}
                   onChange={handleChange}
+                  error={!!errs.wineDescription}
+                  helperText={errs.wineDescription && errs.wineDescription.message}
                 />
-                <br />
+                {/* <br />
                 {errs.wineDescription ? (
                   <span className="error-text" style={{ color: "red" }}>
                     {errs.wineDescription.message}
                   </span>
-                ) : null}
+                ) : null} */}
               </Grid>
             </Grid>
             <Grid
