@@ -121,13 +121,29 @@ const showOneUser = (req, res) => {
     .catch((err) => res.status(400).json(err));
 };
 
-const updateUser = (req, res) => {
-  User.findOneAndUpdate({ _id: req.params._id }, req.body, {
-    new: true,
-    runValidators: true,
-  })
-    .then((updatedUser) => res.json(updatedUser))
-    .catch((err) => res.status(400).json(err));
+const updateUser = async (req, res) => {
+  try {
+    const { password, ...updateData } = req.body;
+
+    if (password) {
+      // Hash the new password
+      const hashedPassword = await bcrypt.hash(password, 10);
+      updateData.password = hashedPassword;
+    }
+
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: req.params._id },
+      updateData,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    res.json(updatedUser);
+  } catch (err) {
+    res.status(400).json(err);
+  }
 };
 
 // const deletePet = (req, res) => {
