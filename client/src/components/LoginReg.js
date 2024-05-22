@@ -69,7 +69,7 @@ const LoginReg = (props) => {
                       <TextField
                         style={{ backgroundColor: "white", color: "white" }}
                         fullWidth
-                        id="email"
+                        id="emailField"
                         className="form-control"
                         type="text"
                         name="email"
@@ -94,7 +94,7 @@ const LoginReg = (props) => {
                         fullWidth
                         label="Password"
                         // variant="filled"
-                        id="password"
+                        id="passwordField"
                         className="form-control"
                         type="password"
                         name="password"

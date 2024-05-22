@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Box, TextField, Button, MenuItem, Grid, FormControlLabel, Checkbox } from "@mui/material";
+import {
+  Box,
+  TextField,
+  Button,
+  MenuItem,
+  Grid,
+  FormControlLabel,
+  Checkbox,
+} from "@mui/material";
 
 const UpdateUser = (props) => {
   const { _id } = useParams();
@@ -40,7 +48,7 @@ const UpdateUser = (props) => {
   }, [_id]);
 
   const handleChange = (e) => {
-    const { name, value, type } = e.target;
+    const { name, value, type, checked } = e.target;
 
     // Clear specific error for the field being changed
     setErrs((prevErrs) => {
@@ -50,7 +58,10 @@ const UpdateUser = (props) => {
 
     // Update user state
     setUser((prevUser) => {
-      const updatedUser = { ...prevUser, [name]: type === "checkbox" ? !prevUser[name] : value };
+      const updatedUser = {
+        ...prevUser,
+        [name]: type === "checkbox" ? checked : value,
+      };
 
       // Check for password match validation
       if (name === "password" || name === "confirmPassword") {
@@ -91,33 +102,93 @@ const UpdateUser = (props) => {
     <>
       {user ? (
         <>
-          <div style={{ width: "60%", margin: "auto", display: "grid" }}>
-            <div>
-              <p>{user._id}</p>
-            </div>
-            <div>
-              <p>{user.firstName}</p>
-            </div>
-            <div>
-              <p>{user.lastName}</p>
-            </div>
-            <div>
-              <p>{user.email}</p>
-            </div>
-            <div>
-              <p>{user.clubLevel}</p>
-            </div>
-            <div>
-              <p>
-                {user.isAdmin
-                  ? "Admin"
-                  : user.isManager
-                  ? "Manager"
-                  : "Regular User"}
-              </p>
+          <div
+            id="container"
+            style={{
+              border: "1px solid black",
+              height: "500px",
+              width: "60%",
+              margin: "auto",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "space-around",
+                alignItems: "stretch",
+                padding: "20px",
+                margin: "20px",
+              }}
+            >
+              <div
+                style={{
+                  flexShrink: "1",
+                  margin: "20px",
+                  border: "1px solid black",
+                }}
+              >
+                <h4>{user._id}</h4>
+              </div>
+              <div
+                style={{
+                  flexShrink: "0",
+                  margin: "20px",
+                  border: "1px solid black",
+                }}
+              >
+                <h4>
+                  {user.firstName} {user.lastName}
+                </h4>
+              </div>
+              <div
+                style={{
+                  flexShrink: "0",
+                  margin: "20px",
+                  border: "1px solid black",
+                }}
+              >
+                <h4>{user.email}</h4>
+              </div>
+              <div
+                style={{
+                  flexShrink: "0",
+                  margin: "20px",
+                  border: "1px solid black",
+                }}
+              >
+                <h4>{user.clubLevel}</h4>
+              </div>
             </div>
           </div>
-          <div id="container" style={{ height: "" }}>
+          <div className="m-5">
+            <div className="w-2/4 m-auto grid grid-cols-4 gap-4">
+              <div>
+                <h4>
+                  {user.firstName} {user.lastName}
+                </h4>
+              </div>
+              <div>
+                <h4>{user.email}</h4>
+              </div>
+            </div>
+            <div className="w-2/4 m-auto grid grid-cols-4 gap-4">
+              <div>
+                <h4>{user.clubLevel}</h4>
+              </div>
+              <div>
+                <h4>
+                  {user.isAdmin
+                    ? "Admin"
+                    : user.isManager
+                    ? "Manager"
+                    : "Regular User"}
+                </h4>
+              </div>
+            </div>
+          </div>
+
+          <div className="pb-5" id="container" style={{ height: "" }}>
             <div style={{ width: "60%", margin: "auto" }}>
               <form onSubmit={updateHandler}>
                 <Box
@@ -130,12 +201,8 @@ const UpdateUser = (props) => {
                     padding: "20px",
                   }}
                 >
-                  <Grid
-                    container
-                    spacing={2}
-                    direction="column"
-                  >
-                    <h4>Become a Wine Club Member</h4>
+                  <Grid container spacing={2} direction="column">
+                    <h4>Update Wine Club Member</h4>
                     <Grid item container spacing={2}>
                       <Grid item xs={12} sm={6}>
                         <TextField
@@ -170,7 +237,7 @@ const UpdateUser = (props) => {
                         <TextField
                           style={{ backgroundColor: "white" }}
                           fullWidth
-                          id="emailField"
+                          id="email"
                           type="text"
                           name="email"
                           value={user.email}
@@ -229,7 +296,9 @@ const UpdateUser = (props) => {
                           onChange={handleChange}
                           label="Confirm Password"
                           error={!!errs.confirmPassword}
-                          helperText={errs.confirmPassword && errs.confirmPassword.message}
+                          helperText={
+                            errs.confirmPassword && errs.confirmPassword.message
+                          }
                         />
                       </Grid>
                     </Grid>
@@ -237,11 +306,12 @@ const UpdateUser = (props) => {
                     <Grid item container spacing={2}>
                       <Grid item xs={12} sm={6}>
                         <FormControlLabel
-                          name="isAdmin"
+                          // name="isAdmin"
                           control={
                             <Checkbox
                               checked={user.isAdmin}
                               onChange={handleChange}
+                              name="isAdmin"
                             />
                           }
                           label="Admin"
@@ -249,11 +319,12 @@ const UpdateUser = (props) => {
                       </Grid>
                       <Grid item xs={12} sm={6}>
                         <FormControlLabel
-                          name="isManager"
+                          // name="isManager"
                           control={
                             <Checkbox
                               checked={user.isManager}
                               onChange={handleChange}
+                              name="isManager"
                             />
                           }
                           label="Manager"
