@@ -22,9 +22,11 @@ const UserList = (props) => {
       <table className="md:border-spacing-4">
         <thead>
           <tr>
-            <th className="p-4 border border-black bg-slate-200">id</th>
+            <th className="p-4 border border-black bg-slate-200 hidden md:table-cell">
+              id
+            </th>
             <th className="p-4 border border-black bg-slate-200">User Name</th>
-            <th className="p-4 border border-black bg-slate-200 hidden lg:table-cell">
+            <th className="p-4 border border-black bg-slate-200 hidden sm:table-cell">
               User Email
             </th>
             <th className="p-4 border border-black bg-slate-200 hidden sm:table-cell">
@@ -40,11 +42,13 @@ const UserList = (props) => {
         <tbody>
           {userList.map((user, idx) => (
             <tr key={idx}>
-              <td className="p-4 border border-slate-700">{user._id}</td>
+              <td className="p-4 border border-slate-700 hidden lg:table-cell">
+                {user._id}
+              </td>
               <td className="p-4 border border-slate-700">
                 {user.firstName} {user.lastName}
               </td>
-              <td className="p-4 border border-slate-700 hidden lg:table-cell">
+              <td className="p-4 border border-slate-700 hidden sm:table-cell">
                 {user.email}
               </td>
               <td className="p-4 border border-slate-700 hidden sm:table-cell">

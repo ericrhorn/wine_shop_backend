@@ -102,7 +102,7 @@ const UpdateUser = (props) => {
     <>
       {user ? (
         <>
-          <div
+          {/* <div
             id="container"
             style={{
               border: "1px solid black",
@@ -186,7 +186,7 @@ const UpdateUser = (props) => {
                 </h4>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div className="pb-5" id="container" style={{ height: "" }}>
             <div style={{ width: "60%", margin: "auto" }}>
@@ -304,6 +304,19 @@ const UpdateUser = (props) => {
                     </Grid>
 
                     <Grid item container spacing={2}>
+                      <Grid item xs={12} sm={12}>
+                        <div>
+                          <p>
+                            {user.isAdmin
+                              ? "Admin"
+                              : user.isManager
+                              ? "Manager"
+                              : "Regular User"}
+                          </p>
+                        </div>
+                      </Grid>
+                    </Grid>
+                    <Grid item container spacing={2}>
                       <Grid item xs={12} sm={6}>
                         <FormControlLabel
                           // name="isAdmin"
@@ -336,6 +349,17 @@ const UpdateUser = (props) => {
                       <Grid item>
                         <Button type="submit" variant="contained">
                           Update Wine Club Member
+                        </Button>
+                      </Grid>
+                    </Grid>
+                    <Grid item container spacing={2}>
+                      <Grid item>
+                        <Button
+                          type="submit"
+                          variant="contained"
+                          href="#MainDashboard"
+                        >
+                          Back
                         </Button>
                       </Grid>
                     </Grid>
