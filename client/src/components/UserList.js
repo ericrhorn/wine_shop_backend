@@ -42,27 +42,27 @@ const UserList = (props) => {
         <tbody>
           {userList.map((user, idx) => (
             <tr key={idx}>
-              <td className="p-4 border border-slate-700 hidden lg:table-cell">
+              <td className="p-2 border border-slate-700 hidden lg:table-cell">
                 {user._id}
               </td>
-              <td className="p-4 border border-slate-700">
+              <td className="p-2 border border-slate-700">
                 {user.firstName} {user.lastName}
               </td>
-              <td className="p-4 border border-slate-700 hidden sm:table-cell">
+              <td className="p-2 border border-slate-700 hidden sm:table-cell">
                 {user.email}
               </td>
-              <td className="p-4 border border-slate-700 hidden sm:table-cell">
+              <td className="p-2 border border-slate-700 hidden sm:table-cell">
                 {user.clubLevel}
               </td>
               {/* Hide on smaller screens */}
-              <td className="p-4 border border-slate-700 hidden lg:table-cell">
+              <td className="p-2 border border-slate-700 hidden lg:table-cell">
                 {user.isAdmin
                   ? "Admin"
                   : user.isManager
                   ? "Manager"
                   : "Regular User"}
               </td>
-              <td className="p-4 border border-slate-700 flex flex-col md:flex-row">
+              <td className="p-2 border border-slate-700 flex flex-col md:flex-row">
                 <div className="md:mr-2">
                   <Link to={`/update/${user._id}`}>
                     <Button variant="outlined">Edit</Button>

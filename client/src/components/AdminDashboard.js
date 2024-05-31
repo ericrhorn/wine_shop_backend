@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import UserList from "./UserList";
 import NewProducts from "./NewProducts";
 import MainDashboard from "./MainDashboard";
+import DashboardInfo from "./DashboardInfo";
 
 const AdminDashboard = (props) => {
   const [user, setUser] = useState(null);
@@ -89,33 +90,12 @@ const AdminDashboard = (props) => {
               </div>
             </div>
 
-            <div className="overflow-y-auto p-7 md:overflow-y-auto md:p-7 bg-white  w-full">
+            <div className="dashboardHome overflow-y-auto p-7 md:overflow-y-auto md:p-7 bg-white  w-full">
               <div>
-                {show === "users" ? <UserList /> : null}
-                {show === "products" ? <NewProducts /> : null}
-                {show === "dashboard" ? null : null}
-              </div>
-              <div className="flex flex-col sm:flex-row md:overflow-hidden overflow-hidden border-2 p-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
-                  <div className="border-2 flex-grow flex justify-center items-center h-[500px]">
-                    <h1>hello</h1>
-                  </div>
-                  <div className="border-2 flex-grow flex justify-center items-center h-[500px]">
-                    <h1>hello</h1>
-                  </div>
-                  <div className="border-2 flex-grow flex justify-center items-center h-[500px]">
-                    <h1>hello</h1>
-                  </div>
-                  <div className="border-2 flex-grow flex justify-center items-center h-[500px]">
-                    <h1>hello</h1>
-                  </div>
-                  <div className="border-2 flex-grow flex justify-center items-center h-[500px]">
-                    <h1>hello</h1>
-                  </div>
-                  <div className="border-2 flex-grow flex justify-center items-center h-[500px]">
-                    <h1>hello</h1>
-                  </div>
-                </div>
+                {show === "users" && <UserList />}
+                {show === "products" && <NewProducts />}
+                {show !== "users" && show !== "products" && <DashboardInfo />}
+                {/* <DashboardInfo /> */}
               </div>
             </div>
           </div>

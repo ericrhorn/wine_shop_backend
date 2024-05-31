@@ -37,7 +37,7 @@ function App() {
               element={<WineClub setIsLoggedin={setIsLoggedin} />}
             />
             <Route
-              path="/MainDashboard"
+              path="/mainDashboard"
               element={<MainDashboard isLoggedin={isLoggedin} />}
             />
             <Route path="/update/:_id" element={<UpdateUser />} />
