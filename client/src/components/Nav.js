@@ -26,6 +26,7 @@ function HideOnScroll(props) {
   );
 }
 
+
 export default function Nav(props) {
   const [showMenu, setShowMenu] = useState(false);
   const { isLoggedin, setIsLoggedin } = props;
@@ -82,7 +83,7 @@ export default function Nav(props) {
   return (
     <React.Fragment>
       <HideOnScroll {...props}>
-        <AppBar color="default">
+        <AppBar color="default" >
           {user ? (
             <Toolbar>
               <nav
@@ -94,10 +95,10 @@ export default function Nav(props) {
                 }}
               >
                 <div>
-                  <WineBarIcon fontSize="large" />
+                  <WineBarIcon fontSize="medium" />
                 </div>
                 <div className="navLinks">
-                  <Link to="/" relative="path">
+                  <Link className="text-sm" to="/" relative="path">
                     Home
                   </Link>
                   <Link to="/about" relative="path">

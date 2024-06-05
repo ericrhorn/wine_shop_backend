@@ -90,24 +90,14 @@ const AdminDashboard = (props) => {
               </div>
             </div>
 
-            <div className="dashboardHome overflow-y-auto p-7 md:overflow-y-auto md:p-7 bg-white  w-full">
+            <div className="dashboardHome overflow-y-auto p-7 md:p-7  w-full">
               <div>
                 {show === "users" && <UserList />}
                 {show === "products" && <NewProducts />}
                 {show !== "users" && show !== "products" && <DashboardInfo />}
-                {/* <DashboardInfo /> */}
               </div>
             </div>
           </div>
-
-          {/* <div>
-            <div>
-              <p>{user.lastName}</p>
-              <p>{user.email}</p>
-              <p>{user.isAdmin || user.isManager ? "Admin" : "Regular User"}</p>
-              <p>{user._id}</p>
-            </div>
-          </div> */}
         </div>
       )}
     </>
