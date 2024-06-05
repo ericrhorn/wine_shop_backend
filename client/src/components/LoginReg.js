@@ -62,12 +62,13 @@ const LoginReg = (props) => {
                 <Grid item container spacing={2}>
                   <Grid item container spacing={2}>
                     <Grid item xs={12} sm={12}>
-                      <h4 style={{ color: "white" }}>Wine Club Login</h4>
+                      <h5 style={{ color: "white" }}>Wine Club Login</h5>
                       {/* <p className="error-text" style={{ color: "red" }}>
                         {errs ? errs : ""}
                       </p> */}
                       <TextField
                         style={{ backgroundColor: "white", color: "white" }}
+                        size="small"
                         fullWidth
                         id="emailField"
                         className="form-control"
@@ -91,6 +92,7 @@ const LoginReg = (props) => {
                     <Grid item xs={12} sm={12}>
                       <TextField
                         style={{ backgroundColor: "white" }}
+                        size="small"
                         fullWidth
                         label="Password"
                         // variant="filled"
@@ -119,7 +121,7 @@ const LoginReg = (props) => {
                     // justifyContent="center"
                   >
                     <Grid item>
-                      <Button type="submit" variant="contained">
+                      <Button type="submit" variant="contained" size="small">
                         Login
                       </Button>
                     </Grid>

@@ -27,9 +27,9 @@
 }
 
 .navLinks{
-  padding-top: 10px;
+  /* padding-top: 10px; */
   display: inline-flex;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .hamIcon{
@@ -48,13 +48,16 @@
 @media (max-width: 860px) {
   .navLinks {
     display: none;
+    
   }
   nav {
     align-content: space-between;
+    
   }
   .hamIcon {
     padding-top: 5px;
     display: inline-flex;
+    
   }
   .hamLinks{
     text-align: center;
@@ -62,18 +65,20 @@
     position: absolute;
     width: 93%;
     background-color: white;
-    margin-top: 280px;
+    margin-top: 375px;
+    
   }
   .hamLinks, Link{
     display: flex;
     flex-direction: column;
     /* text-decoration: none; */
     border: 1px solid black;
+    
   }
   .hamLinks a{
     text-decoration: none;
     color: black;
-    font-size: 20px;
+    font-size: 15px;
   }
 
   Link, a {

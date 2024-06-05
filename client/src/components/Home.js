@@ -48,7 +48,7 @@ function Home() {
               >
                 The Wine Club
               </h1>
-              <p style={{ lineHeight: "2", fontSize: "20px" }}>
+              <p style={{ lineHeight: "2", fontSize: "18px" }}>
                 Sed quid ages tandem, si utilitas ab amicitia, ut fit saepe,
                 defecerit? Hoc enim constituto in philosophia constituta sunt
                 omnia. Quamquam te quidem video minime esse deterritum. Sic enim

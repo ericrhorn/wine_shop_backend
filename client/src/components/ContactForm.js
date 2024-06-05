@@ -65,7 +65,7 @@ export const ContactForm = () => {
             backgroundImage: `url(${winery})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
-            height: "700px", // Adjust the height as needed
+            height: "700px",
           }}
         >
           <Grid
@@ -101,14 +101,24 @@ export const ContactForm = () => {
                   })}
                 />
                 {errors.name && (
-                  <span className="errorMessage" style={{ color: "red" }}>
+                  <div
+                    className="errorMessage"
+                    style={{
+                      color: "red",
+                      backgroundColor: "white",
+                      padding: "5px",
+                      paddingTop: "5px",
+                      marginTop: "5px",
+                      borderRadius: "5px",
+                    }}
+                  >
                     <strong>{errors.name.message}</strong>
-                  </span>
+                  </div>
                 )}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  style={{ backgroundColor: "white" }}
+                  style={{}}
                   fullWidth
                   id="email"
                   label="Email"
@@ -129,9 +139,19 @@ export const ContactForm = () => {
                   className="form-control formInput"
                 />
                 {errors.email && (
-                  <span className="errorMessage" style={{ color: "red" }}>
+                  <div
+                    className="errorMessage"
+                    style={{
+                      color: "red",
+                      backgroundColor: "white",
+                      padding: "5px",
+                      paddingTop: "5px",
+                      marginTop: "5px",
+                      borderRadius: "5px",
+                    }}
+                  >
                     <strong>{errors.email.message}</strong>
-                  </span>
+                  </div>
                 )}
               </Grid>
             </Grid>
@@ -208,9 +228,19 @@ export const ContactForm = () => {
                   className="form-control formInput"
                 />
                 {errors.question && (
-                  <span className="errorMessage" style={{ color: "red" }}>
+                  <div
+                    className="errorMessage"
+                    style={{
+                      color: "red",
+                      backgroundColor: "white",
+                      padding: "5px",
+                      paddingTop: "5px",
+                      marginTop: "5px",
+                      borderRadius: "5px",
+                    }}
+                  >
                     <strong>{errors.question.message}</strong>
-                  </span>
+                  </div>
                 )}
               </Grid>
             </Grid>
