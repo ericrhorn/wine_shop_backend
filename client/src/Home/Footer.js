@@ -1,8 +1,7 @@
 import React from "react";
-import LoginReg from "./LoginReg";
+import LoginReg from "../components/LoginReg";
 
 function Footer(props) {
-
   const { setIsLoggedin } = props;
 
   return (

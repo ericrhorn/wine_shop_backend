@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import Dashboard from "./Dashboard";
-import Unauthorized from "./Unauthorized";
-import AdminDashboard from "./AdminDashboard";
-import ManagerDashboard from "./ManagerDashboard";
+import Unauthorized from "../components/Unauthorized";
+import AdminDashboard from "../Dashboard/AdminDashboard";
+import ManagerDashboard from "../Dashboard/ManagerDashboard";
 
 const MainDashboard = (props) => {
   const [user, setUser] = useState(null);

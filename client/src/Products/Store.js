@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Products from "./Products";
 
-const Store = () => {
-
+const Store = (props) => {
+    const [productList, setProductList] = useState({});
 
   return (
     <>

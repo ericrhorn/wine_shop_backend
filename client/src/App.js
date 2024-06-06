@@ -1,20 +1,21 @@
 // App.js
 import { useState } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
-import Nav from "./components/Nav";
-import Home from "./components/Home";
-import Store from "./components/Store";
+import Nav from "./Home/Nav";
+import Home from "./Products/Home";
+import Store from "./Products/Store";
 import LoginReg from "./components/LoginReg";
 import About from "./components/About";
-import Banner from "./components/Banner";
-import Footer from "./components/Footer";
-import WineClub from "./components/WineClub";
-import MainDashboard from "./components/MainDashboard";
-import UpdateUser from "./components/UpdateUser";
+import Banner from "./Home/Banner";
+import Footer from "./Home/Footer";
+import WineClub from "./WineClub/WineClub";
+import MainDashboard from "./Dashboard/MainDashboard";
+import UpdateUser from "./Users/UpdateUser";
 import "@fontsource/open-sans";
 import "./App.css"; // Ensure this line is present to include the CSS
 
 function App() {
+    const [productList, setProductList] = useState({});
   const [isLoggedin, setIsLoggedin] = useState(false);
 
   return (
@@ -25,7 +26,16 @@ function App() {
         <div className="main-content">
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route exact path="/store" element={<Store />} />
+            <Route
+              exact
+              path="/store"
+              element={
+                <Store
+                  productList={productList}
+                  setProductList={setProductList}
+                />
+              }
+            />
             <Route
               exact
               path="/login"

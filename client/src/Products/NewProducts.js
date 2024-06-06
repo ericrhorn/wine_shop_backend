@@ -12,13 +12,14 @@ const NewProducts = () => {
   const [products, setProducts] = useState({
     wineName: "",
     wineType: "",
+    wineVarietal: "",
     wineDescription: "",
     winePrice: "",
   });
 
   const handleChange = (e) => {
     setErrs((prevErrs) => {
-      const { [e.target.name]: removedError,...remainingErrors } = prevErrs;
+      const { [e.target.name]: removedError, ...remainingErrors } = prevErrs;
       return remainingErrors;
     });
     setProducts({
@@ -39,8 +40,10 @@ const NewProducts = () => {
         setProducts({
           wineName: "",
           wineType: "",
+          wineVarietal: "",
           wineDescription: "",
           winePrice: "",
+          inventory: "",
         });
       })
       .catch((err) => {
@@ -49,18 +52,17 @@ const NewProducts = () => {
       });
   };
 
-
-const VisuallyHiddenInput = styled("input")({
-  clip: "rect(0 0 0 0)",
-  clipPath: "inset(50%)",
-  height: 1,
-  overflow: "hidden",
-  position: "absolute",
-  bottom: 0,
-  left: 0,
-  whiteSpace: "nowrap",
-  width: 1,
-});
+  const VisuallyHiddenInput = styled("input")({
+    clip: "rect(0 0 0 0)",
+    clipPath: "inset(50%)",
+    height: 1,
+    overflow: "hidden",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    whiteSpace: "nowrap",
+    width: 1,
+  });
 
   return (
     <>
@@ -140,6 +142,28 @@ const VisuallyHiddenInput = styled("input")({
                 <TextField
                   style={{ backgroundColor: "white" }}
                   fullWidth
+                  id="wineVarietal"
+                  className="form-control"
+                  type="text"
+                  name="wineVarietal"
+                  value={products.wineVarietal}
+                  onChange={handleChange}
+                  label="Wine Varietal"
+                  error={!!errs.wineVarietal}
+                  helperText={errs.wineVarietal && errs.wineVarietal.message}
+                  // variant="filled"
+                />
+                {/* <br />
+                {errs.wineType ? (
+                  <span className="error-text" style={{ color: "red" }}>
+                    {errs.winePrice.message}
+                  </span>
+                ) : null} */}
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  style={{ backgroundColor: "white" }}
+                  fullWidth
                   id="winePrice"
                   className="form-control"
                   type="text"
@@ -149,6 +173,31 @@ const VisuallyHiddenInput = styled("input")({
                   label="Wine Price"
                   error={!!errs.winePrice}
                   helperText={errs.winePrice && errs.winePrice.message}
+                  // variant="filled"
+                />
+                {/* <br />
+                {errs.wineType ? (
+                  <span className="error-text" style={{ color: "red" }}>
+                    {errs.winePrice.message}
+                  </span>
+                ) : null} */}
+              </Grid>
+            </Grid>
+
+            <Grid item container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  style={{ backgroundColor: "white" }}
+                  fullWidth
+                  id="inventory"
+                  className="form-control"
+                  type="text"
+                  name="inventory"
+                  value={products.inventory}
+                  onChange={handleChange}
+                  label="Inventory"
+                  error={!!errs.inventory}
+                  helperText={errs.inventory && errs.inventory.message}
                   // variant="filled"
                 />
                 {/* <br />
@@ -191,7 +240,9 @@ const VisuallyHiddenInput = styled("input")({
                   value={products.wineDescription}
                   onChange={handleChange}
                   error={!!errs.wineDescription}
-                  helperText={errs.wineDescription && errs.wineDescription.message}
+                  helperText={
+                    errs.wineDescription && errs.wineDescription.message
+                  }
                 />
                 {/* <br />
                 {errs.wineDescription ? (
@@ -227,7 +278,6 @@ const VisuallyHiddenInput = styled("input")({
 };
 
 export default NewProducts;
-
 
 //  <div className="mb-3 mt-3">
 //               <label htmlFor="wineName">Wine Name</label>

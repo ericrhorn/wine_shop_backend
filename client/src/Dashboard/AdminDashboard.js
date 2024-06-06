@@ -3,8 +3,8 @@ import axios from "axios";
 
 import Button from "@mui/material/Button";
 
-import UserList from "./UserList";
-import NewProducts from "./NewProducts";
+import UserList from "../Users/UserList";
+import NewProducts from "../Products/NewProducts";
 import MainDashboard from "./MainDashboard";
 import DashboardInfo from "./DashboardInfo";
 

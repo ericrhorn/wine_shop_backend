@@ -7,7 +7,8 @@ import {
   InputAdornment,
   IconButton,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search"; // Make sure to import the search icon
+import SearchIcon from "@mui/icons-material/Search";
+import Search from "../components/Search";
 
 
 const UserList = (props) => {
@@ -39,7 +40,11 @@ const handleSearchChange = (e) => {
     <div className="w-full">
       <h2>Wine Club Members</h2>
       <div className="py-4">
-        <form action="">
+        <Search
+          searchTerm={searchTerm}
+          handleSearchChange={handleSearchChange}
+        />
+        {/* <form action="">
           <TextField
             id="searchField"
             className="form-control rounded-lg"
@@ -60,7 +65,7 @@ const handleSearchChange = (e) => {
               ),
             }}
           />
-        </form>
+        </form> */}
       </div>
       <table className="text-sm table-auto rounded-lg  w-full border border-slate-700  ">
         <thead>

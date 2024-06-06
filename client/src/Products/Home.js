@@ -4,8 +4,8 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 
-import { ContactForm } from "./ContactForm";
-import HomeImages from "./HomeImages";
+import { ContactForm } from "../Home/ContactForm";
+import HomeImages from "../Home/HomeImages";
 
 import wineClub from "../assets/wine_club_2.jpeg";
 import tasting from "../assets/tasting.jpeg";
