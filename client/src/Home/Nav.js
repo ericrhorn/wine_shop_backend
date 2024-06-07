@@ -5,8 +5,10 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Slide from "@mui/material/Slide";
 import { useNavigate, Link } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
+import ShoppingCart from "../Checkout/ShoppingCart";
 
 import WineBarIcon from "@mui/icons-material/WineBar";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import React, { useState, useEffect } from "react";
 import "../style/nav.css";
 
@@ -25,12 +27,13 @@ function HideOnScroll(props) {
   );
 }
 
-
 const Nav = (props) => {
   const [showMenu, setShowMenu] = useState(false);
   const { isLoggedin, setIsLoggedin } = props;
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+    const [showDetails, setShowDetails] = useState(false);
+
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -100,9 +103,9 @@ const Nav = (props) => {
                   <Link to="/" relative="path">
                     Home
                   </Link>
-                  <Link to="/about" relative="path">
+                  {/* <Link to="/about" relative="path">
                     About Us
-                  </Link>
+                  </Link> */}
                   <Link to="/store" relative="path">
                     Store
                   </Link>
@@ -113,6 +116,14 @@ const Nav = (props) => {
                     {user.firstName}
                   </Link>
                   <Link onClick={logout}>Logout</Link>
+                  <Link>
+                    <ShoppingCartIcon
+                      fontSize="medium"
+                      onClick={() => {
+                        setShowDetails(true);
+                      }}
+                    />
+                  </Link>
                 </div>
                 <div className="hamIcon" onClick={openMenu}>
                   {showMenu ? (
@@ -127,9 +138,9 @@ const Nav = (props) => {
                   <Link onClick={closeMenu} to="/" relative="path">
                     Home
                   </Link>
-                  <Link onClick={closeMenu} to="/about" relative="path">
+                  {/* <Link onClick={closeMenu} to="/about" relative="path">
                     About Us
-                  </Link>
+                  </Link> */}
                   <Link onClick={closeMenu} to="/store" relative="path">
                     Store
                   </Link>
@@ -146,6 +157,14 @@ const Nav = (props) => {
                     }}
                   >
                     Logout
+                  </Link>
+                  <Link>
+                    <ShoppingCartIcon
+                      fontSize="medium"
+                      onClick={() => {
+                        setShowDetails(true);
+                      }}
+                    />
                   </Link>
                 </nav>
               )}
@@ -167,9 +186,9 @@ const Nav = (props) => {
                   <Link to="/" relative="path">
                     Home
                   </Link>
-                  <Link to="/about" relative="path">
+                  {/* <Link to="/about" relative="path">
                     About Us
-                  </Link>
+                  </Link> */}
                   <Link to="/store" relative="path">
                     Store
                   </Link>
@@ -184,7 +203,16 @@ const Nav = (props) => {
                   >
                     Login
                   </ScrollLink>
+                  <Link>
+                    <ShoppingCartIcon
+                      fontSize="medium"
+                      onClick={() => {
+                        setShowDetails(true);
+                      }}
+                    />
+                  </Link>
                 </div>
+
                 <div className="hamIcon" onClick={openMenu}>
                   {showMenu ? (
                     <CloseIcon fontSize="large" />
@@ -216,14 +244,25 @@ const Nav = (props) => {
                   >
                     Login
                   </ScrollLink>
+                  <Link>
+                    <ShoppingCartIcon
+                      fontSize="medium"
+                      onClick={() => {
+                        setShowDetails(true);
+                      }}
+                    />
+                  </Link>
                 </nav>
               )}
             </Toolbar>
           )}
         </AppBar>
       </HideOnScroll>
-      <Toolbar />
+      {showDetails && (
+       <ShoppingCart showDetails={showDetails} setShowDetails={setShowDetails}/>
+      )}
+      {/* <Toolbar /> */}
     </>
   );
-}
+};
 export default Nav;

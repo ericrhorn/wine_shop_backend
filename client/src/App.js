@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Nav from "./Home/Nav";
-import Home from "./Products/Home";
+import Home from "./Home/Home";
 import Store from "./Products/Store";
 import LoginReg from "./components/LoginReg";
 import About from "./components/About";
@@ -15,7 +15,7 @@ import "@fontsource/open-sans";
 import "./App.css"; // Ensure this line is present to include the CSS
 
 function App() {
-    const [productList, setProductList] = useState({});
+  const [productList, setProductList] = useState({});
   const [isLoggedin, setIsLoggedin] = useState(false);
 
   return (
@@ -41,7 +41,7 @@ function App() {
               path="/login"
               element={<LoginReg setIsLoggedin={setIsLoggedin} />}
             />
-            <Route exact path="/about" element={<About />} />
+            {/* <Route exact path="/about" element={<About />} /> */}
             <Route
               path="/wineClub"
               element={<WineClub setIsLoggedin={setIsLoggedin} />}
