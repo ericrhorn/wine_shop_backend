@@ -1,5 +1,5 @@
 // App.js
-import { useState } from "react";
+import { useDebugValue, useState } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Nav from "./Home/Nav";
 import Home from "./Home/Home";
@@ -14,14 +14,21 @@ import UpdateUser from "./Users/UpdateUser";
 import "@fontsource/open-sans";
 import "./App.css"; // Ensure this line is present to include the CSS
 
-function App() {
+function App(props) {
   const [productList, setProductList] = useState({});
   const [isLoggedin, setIsLoggedin] = useState(false);
+  const [cart, setCart] = useState([]);
+
 
   return (
     <HashRouter basename="/">
       <div id="root">
-        <Nav isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin} />
+        <Nav
+          isLoggedin={isLoggedin}
+          setIsLoggedin={setIsLoggedin}
+          cart={cart}
+          setCart={setCart}
+        />
         <Banner />
         <div className="main-content">
           <Routes>
@@ -33,6 +40,8 @@ function App() {
                 <Store
                   productList={productList}
                   setProductList={setProductList}
+                  cart={cart}
+                  setCart={setCart}
                 />
               }
             />

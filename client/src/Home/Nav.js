@@ -32,8 +32,11 @@ const Nav = (props) => {
   const { isLoggedin, setIsLoggedin } = props;
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-    const [showDetails, setShowDetails] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
+  // const [cart, setCart] = useState([])
+  const { cart, setCart } = props;
 
+  console.log("nav cart", cart);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -82,6 +85,11 @@ const Nav = (props) => {
     setShowMenu(false);
   };
 
+  const totalCartQuantity = cart.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
   return (
     <>
       <HideOnScroll {...props}>
@@ -116,13 +124,20 @@ const Nav = (props) => {
                     {user.firstName}
                   </Link>
                   <Link onClick={logout}>Logout</Link>
-                  <Link>
+                  <Link
+                    onClick={() => {
+                      setShowDetails(true);
+                    }}
+                  >
                     <ShoppingCartIcon
                       fontSize="medium"
-                      onClick={() => {
-                        setShowDetails(true);
-                      }}
+                      className="relative z-10"
                     />
+                    {cart.length > 0 ? (
+                      <div className="cartQuantity absolute top-30 right-10  bg-red-600 rounded-full h-[20px] w-[20px] flex items-center justify-center">
+                        <p className="text-white m-1">{totalCartQuantity}</p>
+                      </div>
+                    ) : null}
                   </Link>
                 </div>
                 <div className="hamIcon" onClick={openMenu}>
@@ -158,13 +173,20 @@ const Nav = (props) => {
                   >
                     Logout
                   </Link>
-                  <Link>
+                  <Link
+                    onClick={() => {
+                      setShowDetails(true);
+                    }}
+                  >
                     <ShoppingCartIcon
                       fontSize="medium"
-                      onClick={() => {
-                        setShowDetails(true);
-                      }}
+                      className="relative z-10"
                     />
+                    {cart.length > 0 ? (
+                      <div className="cartQuantity absolute top-30 right-10  bg-red-600 rounded-full h-[20px] w-[20px] flex items-center justify-center">
+                        <p className="text-white m-1">{totalCartQuantity}</p>
+                      </div>
+                    ) : null}
                   </Link>
                 </nav>
               )}
@@ -203,13 +225,20 @@ const Nav = (props) => {
                   >
                     Login
                   </ScrollLink>
-                  <Link>
+                  <Link
+                    onClick={() => {
+                      setShowDetails(true);
+                    }}
+                  >
                     <ShoppingCartIcon
                       fontSize="medium"
-                      onClick={() => {
-                        setShowDetails(true);
-                      }}
+                      className="relative z-10"
                     />
+                    {cart.length > 0 ? (
+                      <div className="cartQuantity absolute top-30 right-10  bg-red-600 rounded-full h-[20px] w-[20px] flex items-center justify-center">
+                        <p className="text-white m-1">{totalCartQuantity}</p>
+                      </div>
+                    ) : null}
                   </Link>
                 </div>
 
@@ -244,13 +273,20 @@ const Nav = (props) => {
                   >
                     Login
                   </ScrollLink>
-                  <Link>
+                  <Link
+                    onClick={() => {
+                      setShowDetails(true);
+                    }}
+                  >
                     <ShoppingCartIcon
                       fontSize="medium"
-                      onClick={() => {
-                        setShowDetails(true);
-                      }}
+                      className="relative z-10"
                     />
+                    {cart.length > 0 ? (
+                      <div className="cartQuantity absolute top-30 right-18  bg-red-600 rounded-full h-[20px] w-[20px] flex items-center justify-center">
+                        <p className="text-white m-1">{totalCartQuantity}</p>
+                      </div>
+                    ) : null}
                   </Link>
                 </nav>
               )}
@@ -259,7 +295,14 @@ const Nav = (props) => {
         </AppBar>
       </HideOnScroll>
       {showDetails && (
-       <ShoppingCart showDetails={showDetails} setShowDetails={setShowDetails}/>
+        <div>
+          <ShoppingCart
+            cart={cart}
+            setCart={setCart}
+            showDetails={showDetails}
+            setShowDetails={setShowDetails}
+          />
+        </div>
       )}
       {/* <Toolbar /> */}
     </>

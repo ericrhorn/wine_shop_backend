@@ -3,7 +3,13 @@ import Button from "@mui/material/Button";
 import Products from "./Products";
 
 const Store = (props) => {
-    const [productList, setProductList] = useState({});
+  const [productList, setProductList] = useState({});
+  // const [cart, setCart] = useState([]);
+  const { cart, setCart } = props;
+
+  const handleCartUpdate = (updatedCart) => {
+    setCart(updatedCart);
+  };
 
   return (
     <>
@@ -50,7 +56,11 @@ const Store = (props) => {
           </div>
 
           <div className="overflow-y-auto p-7 md:overflow-y-auto md:p-7 bg-white  w-full">
-            <Products/>
+            <Products
+              cart={cart}
+              setCart={setCart}
+              onCartUpdate={handleCartUpdate}
+            />
             {/* {show === "users" ? <UserList /> : null}
             {show === "products" ? <NewProducts /> : null} */}
             {/* <UserList /> */}

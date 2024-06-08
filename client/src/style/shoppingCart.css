@@ -38,10 +38,21 @@
   padding: 10px;
 }
 .cartItem {
-  display: flex;
+  /* display: flex; */
   /* justify-content: space-between; */
   /* align-items: center; */
   padding: 10px;
   border: 2px solid rgba(0, 0, 0, 0.1);
-  margin: 10px;
+  /* margin: 10px; */
+  /* text-align: center; */
+  margin: auto;
+}
+.cartRemove {
+  /* display: flex; */
+  /* justify-content: space-between;
+  align-items: center;*/
+  padding: 10px; 
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  /* margin: 10px; */
+  margin: auto;
 }
