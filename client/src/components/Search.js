@@ -18,7 +18,7 @@ const Search = (props) => {
 
   return (
     <>
-      <div>
+      <div className="pb-4">
         <form action="">
           <TextField
             id="searchField"

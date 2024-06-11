@@ -276,6 +276,7 @@ const Nav = (props) => {
                   <Link
                     onClick={() => {
                       setShowDetails(true);
+                      
                     }}
                   >
                     <ShoppingCartIcon
@@ -283,7 +284,8 @@ const Nav = (props) => {
                       className="relative z-10"
                     />
                     {cart.length > 0 ? (
-                      <div className="cartQuantity absolute top-30 right-18  bg-red-600 rounded-full h-[20px] w-[20px] flex items-center justify-center">
+                      <div className="cartQuantity bg-red-600 rounded-full h-[20px] w-[20px] flex items-center justify-center">
+                      {/* <div className="cartQuantity absolute top-30 right-18  bg-red-600 rounded-full h-[20px] w-[20px] flex items-center justify-center"> */}
                         <p className="text-white m-1">{totalCartQuantity}</p>
                       </div>
                     ) : null}

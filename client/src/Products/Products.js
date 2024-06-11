@@ -93,6 +93,8 @@ const Products = (props) => {
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
           gap: "20px",
+          // margin:'auto',
+          // justifyItems: "center"
           // padding: "0px 50px 50px",
         }}
       >
@@ -100,7 +102,11 @@ const Products = (props) => {
           <Card key={idx} sx={{ maxWidth: 345 }}>
             <CardActionArea>
               <div className="p-2">
-                <CardMedia component="img" image={wineBottle} />
+                <CardMedia
+                className="h-[150px] w-auto m-auto "
+                  component="img"
+                  image={wineBottle}
+                />
               </div>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
@@ -137,7 +143,6 @@ const Products = (props) => {
             </CardActionArea>
           </Card>
         ))}
-        ;
       </div>
     </>
   );
