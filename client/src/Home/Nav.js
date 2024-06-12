@@ -33,8 +33,10 @@ const Nav = (props) => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
+    const [productList, setProductList] = useState([]);
+
   // const [cart, setCart] = useState([])
-  const { cart, setCart } = props;
+  const { addItemToCart, removeItemFromCart, setWithExpiry, getWithExpiry, cart, setCart } = props;
 
   console.log("nav cart", cart);
 
@@ -56,6 +58,21 @@ const Nav = (props) => {
 
     fetchUserData();
   }, [isLoggedin]);
+
+
+
+    useEffect(() => {
+      const savedCart = getWithExpiry("cart");
+      if (savedCart) {
+        setCart(savedCart);
+      }
+      axios
+        .get("http://localhost:8000/api/products/allProducts")
+        .then((res) => {
+          setProductList(res.data);
+        })
+        .catch((err) => console.log(err.data));
+    }, [setCart]);
 
   const logout = () => {
     axios
@@ -276,16 +293,16 @@ const Nav = (props) => {
                   <Link
                     onClick={() => {
                       setShowDetails(true);
-                      
                     }}
+                    className="cartLink"
                   >
                     <ShoppingCartIcon
                       fontSize="medium"
                       className="relative z-10"
                     />
                     {cart.length > 0 ? (
-                      <div className="cartQuantity bg-red-600 rounded-full h-[20px] w-[20px] flex items-center justify-center">
-                      {/* <div className="cartQuantity absolute top-30 right-18  bg-red-600 rounded-full h-[20px] w-[20px] flex items-center justify-center"> */}
+                      // <div className="cartQuantity bg-red-600 rounded-full h-[20px] w-[20px] flex items-center justify-center">
+                      <div className="absolute top-0 right-0 bg-red-600 rounded-full h-[20px] w-[20px] flex items-center justify-center">
                         <p className="text-white m-1">{totalCartQuantity}</p>
                       </div>
                     ) : null}
@@ -303,6 +320,10 @@ const Nav = (props) => {
             setCart={setCart}
             showDetails={showDetails}
             setShowDetails={setShowDetails}
+            addItemToCart={addItemToCart}
+            removeItemFromCart={removeItemFromCart}
+            setWithExpiry={setWithExpiry}
+            getWithExpiry={getWithExpiry}
           />
         </div>
       )}

@@ -19,18 +19,27 @@
   text-decoration: none;
   color: black;
 } */
-.large-nav a{
-  display: inline-flex;
-  padding-right: 30px;
-  text-decoration: none;
-  color: black;
+.large-nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
 }
 
 .navLinks{
   /* padding-top: 10px; */
-  display: inline-flex;
+  display: flex;
   font-size: 15px;
 }
+
+.navLinks a {
+  display: inline-flex;
+  text-decoration: none;
+  color: black;
+  margin-right: 30px; /* Ensure some spacing between links */
+}
+
+/*  */
 
 .hamIcon{
   padding-top: 5px;
@@ -91,4 +100,3 @@
     background-color: lightgray;
   }
 }
-

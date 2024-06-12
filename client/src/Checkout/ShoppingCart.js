@@ -4,7 +4,8 @@ import "../style/shoppingCart.css";
 import Button from "@mui/material/Button";
 
 const ShoppingCart = (props) => {
-  const { cart, setCart, setShowDetails } = props;
+  const {  cart, setCart, setShowDetails, addItemToCart, removeItemFromCart } =
+    props;
   const navigate = useNavigate();
 
   const keepShopping = () => {
@@ -16,19 +17,11 @@ const ShoppingCart = (props) => {
   };
 
   const increaseQuantity = (idx) => {
-    const newCart = [...cart];
-    newCart[idx].quantity += 1;
-    setCart(newCart);
+    addItemToCart(cart[idx]);
   };
 
   const decreaseQuantity = (idx) => {
-    const newCart = [...cart];
-    if (newCart[idx].quantity > 1) {
-      newCart[idx].quantity -= 1;
-    } else {
-      newCart.splice(idx, 1);
-    }
-    setCart(newCart);
+    removeItemFromCart(cart[idx]);
   };
 
   const total = cart
@@ -56,7 +49,10 @@ const ShoppingCart = (props) => {
           {cart.length > 0 ? (
             <div className="cartContainer">
               {cart.map((item, idx) => (
-                <div key={idx} className="flex w-full m-2">
+                <div
+                  key={idx}
+                  className="flex w-full m-2 px-4 flex-col sm:flex-row"
+                >
                   <div className="cartItem flex justify-between w-full">
                     <div className="name flex-grow">
                       <p>{item.wineName}</p>
@@ -70,7 +66,7 @@ const ShoppingCart = (props) => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex">
+                  <div className="flex mt-2 sm:mt-0 sm:ml-4 h-full">
                     <Button
                       onClick={() => decreaseQuantity(idx)}
                       size="small"
@@ -88,7 +84,7 @@ const ShoppingCart = (props) => {
                   </div>
                 </div>
               ))}
-              <div className="flex justify-end w-full">
+              <div className="flex justify-center w-full">
                 <p>Total: ${total}</p>
               </div>
             </div>

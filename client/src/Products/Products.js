@@ -6,53 +6,64 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
-// import { TextField, InputAdornment, IconButton } from "@mui/material";
-// import SearchIcon from "@mui/icons-material/Search";
 import Search from "../components/Search";
 
 import wineBottle from "../assets/wine_bottle.jpeg";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 
+// const CART_exp = 30 * 60 * 1000;
+
 const Products = (props) => {
   const [productList, setProductList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  // const [cart, setCart] = useState([]);
-  const { cart, setCart } = props;
-  // const { onCartUpdate } = props;
-  // const [addToCart, setAddToCart] = useState([]);
-  console.log("cart items", cart);
+  const {
+    addItemToCart,
+    removeItemFromCart,
+    setWithExpiry,
+    getWithExpiry,
+    cart,
+    setCart,
+  } = props;
 
+  // const addItemToCart = (product) => {
+  //   const existingItem = cart.find((item) => item._id === product._id);
+  //   let updatedCart;
+  //   if (existingItem) {
+  //     updatedCart = cart.map((item) =>
+  //       item._id === product._id
+  //         ? { ...item, quantity: item.quantity + 1 }
+  //         : item
+  //     );
+  //   } else {
+  //     updatedCart = [...cart, { ...product, quantity: 1 }];
+  //   }
+  //   setCart((prevCart) => {
+  //     const newCart = [...prevCart, { ...product, quantity: 1 }];
+  //     setWithExpiry("cart", newCart, CART_exp);
+  //     return newCart;
+  //   });
+  // };
 
-  const addItemToCart = (product) => {
-    const existingItem = cart.find((item) => item._id === product._id);
-    if (existingItem) {
-      const updatedCart = cart.map((item) =>
-        item._id === product._id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      );
-      setCart(updatedCart);
-    } else {
-      setCart([...cart, { ...product, quantity: 1 }]);
-    }
-  };
-
-  const removeItemFromCart = (product) => {
-    const existingItem = cart.find((item) => item._id === product._id);
-    if (existingItem) {
-      if (existingItem.quantity > 1) {
-        const updatedCart = cart.map((item) =>
-          item._id === product._id
-            ? { ...item, quantity: item.quantity - 1 }
-            : item
-        );
-        setCart(updatedCart);
-      } else {
-        setCart(cart.filter((item) => item._id !== product._id));
-      }
-    }
-  };
+  // const removeItemFromCart = (product) => {
+  //   const existingItem = cart.find((item) => item._id === product._id);
+  //   if (existingItem) {
+  //     let updatedCart;
+  //     if (existingItem.quantity > 1) {
+  //       updatedCart = cart.map((item) =>
+  //         item._id === product._id
+  //           ? { ...item, quantity: item.quantity - 1 }
+  //           : item
+  //       );
+  //     } else {
+  //       updatedCart = cart.filter((item) => item._id !== product._id);
+  //     }
+  //     setCart((prevCart) => {
+  //       setWithExpiry("cart", updatedCart, CART_exp);
+  //       return updatedCart;
+  //     });
+  //   }
+  // };
 
   const isInCart = (product) => {
     return cart.some((item) => item._id === product._id);
@@ -77,6 +88,29 @@ const Products = (props) => {
     setSearchTerm(e.target.value);
   };
 
+  // const setWithExpiry = (key, value, exp) => {
+  //   const now = new Date();
+  //   const item = {
+  //     value: value,
+  //     expiry: now.getTime() + exp,
+  //   };
+  //   localStorage.setItem(key, JSON.stringify(item));
+  // };
+
+  // const getWithExpiry = (key) => {
+  //   const itemStr = localStorage.getItem(key);
+  //   if (!itemStr) {
+  //     return null;
+  //   }
+  //   const item = JSON.parse(itemStr);
+  //   const now = new Date();
+  //   if (now.getTime() > item.expiry) {
+  //     localStorage.removeItem(key);
+  //     return null;
+  //   }
+  //   return item.value;
+  // };
+
   return (
     <>
       <div>
@@ -87,15 +121,10 @@ const Products = (props) => {
       </div>
       <div
         style={{
-          // margin: "100px auto",
           paddingTop: "5px",
-          // maxWidth: "1200px",
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
           gap: "20px",
-          // margin:'auto',
-          // justifyItems: "center"
-          // padding: "0px 50px 50px",
         }}
       >
         {filteredProductList.map((product, idx) => (
@@ -103,7 +132,7 @@ const Products = (props) => {
             <CardActionArea>
               <div className="p-2">
                 <CardMedia
-                className="h-[150px] w-auto m-auto "
+                  className="h-[150px] w-auto m-auto "
                   component="img"
                   image={wineBottle}
                 />

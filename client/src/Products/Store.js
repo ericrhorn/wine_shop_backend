@@ -5,7 +5,14 @@ import Products from "./Products";
 const Store = (props) => {
   const [productList, setProductList] = useState({});
   // const [cart, setCart] = useState([]);
-  const { cart, setCart } = props;
+  const {
+    addItemToCart,
+    removeItemFromCart,
+    setWithExpiry,
+    getWithExpiry,
+    cart,
+    setCart,
+  } = props;
 
   const handleCartUpdate = (updatedCart) => {
     setCart(updatedCart);
@@ -60,6 +67,10 @@ const Store = (props) => {
               cart={cart}
               setCart={setCart}
               onCartUpdate={handleCartUpdate}
+              addItemToCart={addItemToCart}
+              removeItemFromCart={removeItemFromCart}
+              setWithExpiry={setWithExpiry}
+              getWithExpiry={getWithExpiry}
             />
             {/* {show === "users" ? <UserList /> : null}
             {show === "products" ? <NewProducts /> : null} */}

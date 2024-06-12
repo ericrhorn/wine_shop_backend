@@ -14,11 +14,71 @@ import UpdateUser from "./Users/UpdateUser";
 import "@fontsource/open-sans";
 import "./App.css"; // Ensure this line is present to include the CSS
 
+const CART_exp = 30 * 60 * 1000;
+
 function App(props) {
   const [productList, setProductList] = useState({});
   const [isLoggedin, setIsLoggedin] = useState(false);
   const [cart, setCart] = useState([]);
 
+const addItemToCart = (product) => {
+  const existingItem = cart.find((item) => item._id === product._id);
+  let updatedCart;
+  if (existingItem) {
+    updatedCart = cart.map((item) =>
+      item._id === product._id ? { ...item, quantity: item.quantity + 1 } : item
+    );
+  } else {
+    updatedCart = [...cart, { ...product, quantity: 1 }];
+  }
+  setCart(updatedCart);
+  setWithExpiry("cart", updatedCart, CART_exp);
+};
+
+const removeItemFromCart = (product) => {
+  const existingItem = cart.find((item) => item._id === product._id);
+  let updatedCart;
+  if (existingItem) {
+    if (existingItem.quantity > 1) {
+      updatedCart = cart.map((item) =>
+        item._id === product._id
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      );
+    } else {
+      updatedCart = cart.filter((item) => item._id !== product._id);
+    }
+    setCart(updatedCart);
+    setWithExpiry("cart", updatedCart, CART_exp);
+  }
+};
+
+  const setWithExpiry = (key, value, exp) => {
+    const now = new Date();
+    const item = {
+      value: value,
+      expiry: now.getTime() + exp,
+    };
+    localStorage.setItem(key, JSON.stringify(item));
+  };
+
+  const getWithExpiry = (key) => {
+    const itemStr = localStorage.getItem(key);
+    if (!itemStr) {
+      return null;
+    }
+    const item = JSON.parse(itemStr);
+    const now = new Date();
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key);
+      return null;
+    }
+    return item.value;
+  };
+
+  // const isInCart = (product) => {
+  //   return cart.some((item) => item._id === product._id);
+  // };
 
   return (
     <HashRouter basename="/">
@@ -28,6 +88,10 @@ function App(props) {
           setIsLoggedin={setIsLoggedin}
           cart={cart}
           setCart={setCart}
+          addItemToCart={addItemToCart}
+          removeItemFromCart={removeItemFromCart}
+          setWithExpiry={setWithExpiry}
+          getWithExpiry={getWithExpiry}
         />
         <Banner />
         <div className="main-content">
@@ -42,6 +106,10 @@ function App(props) {
                   setProductList={setProductList}
                   cart={cart}
                   setCart={setCart}
+                  addItemToCart={addItemToCart}
+                  removeItemFromCart={removeItemFromCart}
+                  setWithExpiry={setWithExpiry}
+                  getWithExpiry={getWithExpiry}
                 />
               }
             />
