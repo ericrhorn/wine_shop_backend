@@ -3,9 +3,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Box, TextField, Button, Grid } from "@mui/material";
 
+import { useUser } from "../Context/UserContext";
+
 const LoginReg = (props) => {
   const navigate = useNavigate();
-  const { setIsLoggedin } = props;
+  // const { setIsLoggedin } = props;
+  const { handleLogin } = useUser();
   const [errs, setErrs] = useState("");
 
   const [user, setUser] = useState({
@@ -20,28 +23,46 @@ const LoginReg = (props) => {
     });
   };
 
-  const login = (e) => {
-    e.preventDefault();
-    axios
-      .post("http://localhost:8000/api/user/login", user, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res.data);
-        setIsLoggedin(true);
-        setErrs("");
-        setUser({
-          email: "",
-          password: "",
-        });
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        navigate("/MainDashboard");
-      })
-      .catch((err) => {
-        console.log(err.response.data.error);
-        setErrs(err.response.data.error);
+  // const login = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .post("http://localhost:8000/api/user/login", user, {
+  //       withCredentials: true,
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setIsLoggedin(true);
+  //       setErrs("");
+  //       setUser({
+  //         email: "",
+  //         password: "",
+  //       });
+  //       window.scrollTo({ top: 0, behavior: "smooth" });
+  //       navigate("/MainDashboard");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.response.data.error);
+  //       setErrs(err.response.data.error);
+  //     });
+  // };
+
+const login = (e) => {
+  e.preventDefault();
+  handleLogin(user)
+    .then(() => {
+      setErrs("");
+      setUser({
+        email: "",
+        password: "",
       });
-  };
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      navigate("/mainDashboard");
+    })
+    .catch((err) => {
+      console.log(err.response.data.error);
+      setErrs(err.response.data.error);
+    });
+};
 
   return (
     <>

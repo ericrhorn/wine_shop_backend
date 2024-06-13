@@ -14,6 +14,7 @@ import {
 const UpdateUser = (props) => {
   const { _id } = useParams();
   const navigate = useNavigate();
+  console.log('user id in update user',_id)
 
   const [user, setUser] = useState({
     firstName: "",

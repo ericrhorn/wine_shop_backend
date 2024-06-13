@@ -8,25 +8,29 @@ import NewProducts from "../Products/NewProducts";
 import MainDashboard from "./MainDashboard";
 import DashboardInfo from "./DashboardInfo";
 
-const AdminDashboard = (props) => {
-  const [user, setUser] = useState(null);
-  const [userList, setUserList] = useState([]);
-  const { _id } = props;
-  const { isLoggedin } = props;
+import { useUser } from "../Context/UserContext";
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/user/current-user", {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res.data);
-        setUser(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [isLoggedin]);
+
+const AdminDashboard = (props) => {
+  const { isLoggedin, user, logout } = useUser();
+  // const [user, setUser] = useState(null);
+  // const [userList, setUserList] = useState([]);
+  // const { _id } = props;
+  // const { isLoggedin } = props;
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:8000/api/user/current-user", {
+  //       withCredentials: true,
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setUser(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, [isLoggedin]);
 
   const [show, setShow] = useState(false);
 

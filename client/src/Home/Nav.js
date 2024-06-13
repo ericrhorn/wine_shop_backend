@@ -15,6 +15,8 @@ import "../style/nav.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 
+import { useUser } from "../Context/UserContext";
+
 function HideOnScroll(props) {
   const { children, window } = props;
   const trigger = useScrollTrigger({
@@ -29,69 +31,84 @@ function HideOnScroll(props) {
 
 const Nav = (props) => {
   const [showMenu, setShowMenu] = useState(false);
-  const { isLoggedin, setIsLoggedin } = props;
+  // const { isLoggedin, setIsLoggedin } = props;
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
+  const { isLoggedin, user, logout } = useUser();
   const [showDetails, setShowDetails] = useState(false);
-    const [productList, setProductList] = useState([]);
+  const [productList, setProductList] = useState([]);
+
+  console.log("nav user", user);
+  // console.log("nav user firstName", user.firstName);
+  console.log("nav is logged in", isLoggedin);
 
   // const [cart, setCart] = useState([])
-  const { addItemToCart, removeItemFromCart, setWithExpiry, getWithExpiry, cart, setCart } = props;
+  const {
+    addItemToCart,
+    removeItemFromCart,
+    setWithExpiry,
+    getWithExpiry,
+    cart,
+    setCart,
+  } = props;
 
   console.log("nav cart", cart);
 
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "http://localhost:8000/api/user/current-user",
+  //         {
+  //           withCredentials: true,
+  //         }
+  //       );
+  //       console.log(response.data);
+  //       setUser(response.data);
+  //     } catch (error) {
+  //       console.error("Error fetching user data:", error);
+  //     }
+  //   };
+
+  //   fetchUserData();
+  // }, [isLoggedin]);
+
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:8000/api/user/current-user",
-          {
-            withCredentials: true,
-          }
-        );
-        console.log(response.data);
-        setUser(response.data);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-
-    fetchUserData();
-  }, [isLoggedin]);
-
-
-
-    useEffect(() => {
-      const savedCart = getWithExpiry("cart");
-      if (savedCart) {
-        setCart(savedCart);
-      }
-      axios
-        .get("http://localhost:8000/api/products/allProducts")
-        .then((res) => {
-          setProductList(res.data);
-        })
-        .catch((err) => console.log(err.data));
-    }, [setCart]);
-
-  const logout = () => {
+    const savedCart = getWithExpiry("cart");
+    if (savedCart) {
+      setCart(savedCart);
+    }
     axios
-      .post(
-        "http://localhost:8000/api/user/logout",
-        {},
-        { withCredentials: true }
-      )
+      .get("http://localhost:8000/api/products/allProducts")
       .then((res) => {
-        setUser(null);
-        // setIsLoggedin(false);
-        console.log("successfully logged out");
-        navigate("/");
-        setIsLoggedin(false);
-        // window.location.reload();
+        setProductList(res.data);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err.data));
+  }, [setCart]);
+
+  // const logout = () => {
+  //   axios
+  //     .post(
+  //       "http://localhost:8000/api/user/logout",
+  //       {},
+  //       { withCredentials: true }
+  //     )
+  //     .then((res) => {
+  //       setUser(null);
+  //       // setIsLoggedin(false);
+  //       console.log("successfully logged out");
+  //       navigate("/");
+  //       setIsLoggedin(false);
+  //       // window.location.reload();
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
+  const handleLogout = () => {
+    navigate("/");
+    logout();
   };
 
   const openMenu = () => {
@@ -140,7 +157,7 @@ const Nav = (props) => {
                   <Link to="/mainDashboard" relative="path">
                     {user.firstName}
                   </Link>
-                  <Link onClick={logout}>Logout</Link>
+                  <Link onClick={handleLogout}>Logout</Link>
                   <Link
                     onClick={() => {
                       setShowDetails(true);

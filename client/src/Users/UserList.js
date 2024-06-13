@@ -10,20 +10,21 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import Search from "../components/Search";
 
+import { useUser } from "../Context/UserContext";
+
+
 
 const UserList = (props) => {
-  const [userList, setUserList] = useState([]);
+  // const [userList, setUserList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("")
-  const { _id } = props;
+  // const { _id } = props;
+
+   const { userList, fetchUserList } = useUser();
+
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/users/showUsers")
-      .then((res) => {
-        setUserList(res.data);
-      })
-      .catch((err) => console.log(err.data));
-  }, [_id]);
+    fetchUserList();
+  }, [fetchUserList]);
 
 const filteredUserList = userList.filter((user) => 
   `${user.firstName} ${user.lastName} ${user.email} `

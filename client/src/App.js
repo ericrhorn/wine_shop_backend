@@ -14,44 +14,49 @@ import UpdateUser from "./Users/UpdateUser";
 import "@fontsource/open-sans";
 import "./App.css"; // Ensure this line is present to include the CSS
 
+import { UserProvider } from "./Context/UserContext";
+
+
 const CART_exp = 30 * 60 * 1000;
 
 function App(props) {
   const [productList, setProductList] = useState({});
-  const [isLoggedin, setIsLoggedin] = useState(false);
+  // const [isLoggedin, setIsLoggedin] = useState(false);
   const [cart, setCart] = useState([]);
 
-const addItemToCart = (product) => {
-  const existingItem = cart.find((item) => item._id === product._id);
-  let updatedCart;
-  if (existingItem) {
-    updatedCart = cart.map((item) =>
-      item._id === product._id ? { ...item, quantity: item.quantity + 1 } : item
-    );
-  } else {
-    updatedCart = [...cart, { ...product, quantity: 1 }];
-  }
-  setCart(updatedCart);
-  setWithExpiry("cart", updatedCart, CART_exp);
-};
-
-const removeItemFromCart = (product) => {
-  const existingItem = cart.find((item) => item._id === product._id);
-  let updatedCart;
-  if (existingItem) {
-    if (existingItem.quantity > 1) {
+  const addItemToCart = (product) => {
+    const existingItem = cart.find((item) => item._id === product._id);
+    let updatedCart;
+    if (existingItem) {
       updatedCart = cart.map((item) =>
         item._id === product._id
-          ? { ...item, quantity: item.quantity - 1 }
+          ? { ...item, quantity: item.quantity + 1 }
           : item
       );
     } else {
-      updatedCart = cart.filter((item) => item._id !== product._id);
+      updatedCart = [...cart, { ...product, quantity: 1 }];
     }
     setCart(updatedCart);
     setWithExpiry("cart", updatedCart, CART_exp);
-  }
-};
+  };
+
+  const removeItemFromCart = (product) => {
+    const existingItem = cart.find((item) => item._id === product._id);
+    let updatedCart;
+    if (existingItem) {
+      if (existingItem.quantity > 1) {
+        updatedCart = cart.map((item) =>
+          item._id === product._id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        );
+      } else {
+        updatedCart = cart.filter((item) => item._id !== product._id);
+      }
+      setCart(updatedCart);
+      setWithExpiry("cart", updatedCart, CART_exp);
+    }
+  };
 
   const setWithExpiry = (key, value, exp) => {
     const now = new Date();
@@ -82,56 +87,62 @@ const removeItemFromCart = (product) => {
 
   return (
     <HashRouter basename="/">
-      <div id="root">
-        <Nav
-          isLoggedin={isLoggedin}
-          setIsLoggedin={setIsLoggedin}
-          cart={cart}
-          setCart={setCart}
-          addItemToCart={addItemToCart}
-          removeItemFromCart={removeItemFromCart}
-          setWithExpiry={setWithExpiry}
-          getWithExpiry={getWithExpiry}
-        />
-        <Banner />
-        <div className="main-content">
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route
-              exact
-              path="/store"
-              element={
-                <Store
-                  productList={productList}
-                  setProductList={setProductList}
-                  cart={cart}
-                  setCart={setCart}
-                  addItemToCart={addItemToCart}
-                  removeItemFromCart={removeItemFromCart}
-                  setWithExpiry={setWithExpiry}
-                  getWithExpiry={getWithExpiry}
-                />
-              }
-            />
-            <Route
-              exact
-              path="/login"
-              element={<LoginReg setIsLoggedin={setIsLoggedin} />}
-            />
-            {/* <Route exact path="/about" element={<About />} /> */}
-            <Route
-              path="/wineClub"
-              element={<WineClub setIsLoggedin={setIsLoggedin} />}
-            />
-            <Route
-              path="/mainDashboard"
-              element={<MainDashboard isLoggedin={isLoggedin} />}
-            />
-            <Route path="/update/:_id" element={<UpdateUser />} />
-          </Routes>
+      <UserProvider>
+        <div id="root">
+          <Nav
+            // isLoggedin={isLoggedin}
+            // setIsLoggedin={setIsLoggedin}
+            cart={cart}
+            setCart={setCart}
+            addItemToCart={addItemToCart}
+            removeItemFromCart={removeItemFromCart}
+            setWithExpiry={setWithExpiry}
+            getWithExpiry={getWithExpiry}
+          />
+          <Banner />
+          <div className="main-content">
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route
+                exact
+                path="/store"
+                element={
+                  <Store
+                    productList={productList}
+                    setProductList={setProductList}
+                    cart={cart}
+                    setCart={setCart}
+                    addItemToCart={addItemToCart}
+                    removeItemFromCart={removeItemFromCart}
+                    setWithExpiry={setWithExpiry}
+                    getWithExpiry={getWithExpiry}
+                  />
+                }
+              />
+              <Route
+                exact
+                path="/login"
+                element={<LoginReg />}
+                // element={<LoginReg setIsLoggedin={setIsLoggedin} />}
+              />
+              {/* <Route exact path="/about" element={<About />} /> */}
+              <Route
+                path="/wineClub"
+                element={<WineClub />}
+                // element={<WineClub setIsLoggedin={setIsLoggedin} />}
+              />
+              <Route
+                path="/mainDashboard"
+                element={<MainDashboard />}
+                // element={<MainDashboard isLoggedin={isLoggedin} />}
+              />
+              <Route path="/update/:_id" element={<UpdateUser />} />
+            </Routes>
+          </div>
+          <Footer />
+          {/* <Footer isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin} /> */}
         </div>
-        <Footer isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin} />
-      </div>
+      </UserProvider>
     </HashRouter>
   );
 }
