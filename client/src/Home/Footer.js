@@ -2,7 +2,6 @@ import React from "react";
 import LoginReg from "../components/LoginReg";
 
 function Footer(props) {
-  const { setIsLoggedin } = props;
 
   return (
     <div
@@ -34,7 +33,7 @@ function Footer(props) {
       </div>
       <div className="flex">
         <div className="m-auto sm:pt-4">
-          <LoginReg setIsLoggedin={setIsLoggedin} />
+          <LoginReg />
         </div>
       </div>
     </div>

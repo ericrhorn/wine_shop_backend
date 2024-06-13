@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+// import axios from "axios";
 
 import Button from "@mui/material/Button";
 
 import UserList from "../Users/UserList";
 import NewProducts from "../Products/NewProducts";
-import MainDashboard from "./MainDashboard";
+// import MainDashboard from "./MainDashboard";
 import DashboardInfo from "./DashboardInfo";
 
 import { useUser } from "../Context/UserContext";
 
 
 const AdminDashboard = (props) => {
-  const { isLoggedin, user, logout } = useUser();
+  const { user } = useUser();
+  // const { user, logout } = useUser();
   // const [user, setUser] = useState(null);
   // const [userList, setUserList] = useState([]);
   // const { _id } = props;

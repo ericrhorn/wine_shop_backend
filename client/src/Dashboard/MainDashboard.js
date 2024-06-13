@@ -1,30 +1,15 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 
 import Dashboard from "./Dashboard";
 import Unauthorized from "../components/Unauthorized";
 import AdminDashboard from "../Dashboard/AdminDashboard";
 import ManagerDashboard from "../Dashboard/ManagerDashboard";
 
-const MainDashboard = (props) => {
-  const [user, setUser] = useState(null);
-  const { isLoggedin, setIsLoggedin } = props;
-  console.log("setIsLoggedin:", setIsLoggedin);
-  console.log("IsLoggedin:", isLoggedin);
+import { useUser } from "../Context/UserContext";
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/user/current-user", {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log("current user data", res.data);
-        setUser(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [isLoggedin]);
+const MainDashboard = (props) => {
+  const { isLoggedin, user } = useUser();
+  console.log("IsLoggedin:", isLoggedin);
 
   function RenderUser() {
     if (user.isAdmin) {
@@ -40,7 +25,6 @@ const MainDashboard = (props) => {
     <>
       {user && (
         <div>
-          <h2 style={{ paddingLeft: "15px" }}>Welcome {user.firstName}</h2>
           <RenderUser />
         </div>
       )}

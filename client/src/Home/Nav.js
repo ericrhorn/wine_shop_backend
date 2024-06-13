@@ -36,7 +36,7 @@ const Nav = (props) => {
   // const [user, setUser] = useState(null);
   const { isLoggedin, user, logout } = useUser();
   const [showDetails, setShowDetails] = useState(false);
-  const [productList, setProductList] = useState([]);
+  const [ setProductList] = useState([]);
 
   console.log("nav user", user);
   // console.log("nav user firstName", user.firstName);
@@ -84,7 +84,7 @@ const Nav = (props) => {
         setProductList(res.data);
       })
       .catch((err) => console.log(err.data));
-  }, [setCart]);
+  });
 
   // const logout = () => {
   //   axios

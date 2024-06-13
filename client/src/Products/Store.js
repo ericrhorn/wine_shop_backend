@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
+import React from "react";
 import Button from "@mui/material/Button";
 import Products from "./Products";
 
 const Store = (props) => {
-  const [productList, setProductList] = useState({});
+  // const [productList, setProductList] = useState({});
   // const [cart, setCart] = useState([]);
   const {
     addItemToCart,

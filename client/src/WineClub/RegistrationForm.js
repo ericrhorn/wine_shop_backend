@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Box, TextField, Button, MenuItem, Grid } from "@mui/material";
 
+import { useUser } from "../Context/UserContext";
+
 
 const RegistrationForm = (props) => {
   const [errs, setErrs] = useState({});
-  const { setIsLoggedin } = props;
+  const { setIsLoggedin } = useUser();
 
   const navigate = useNavigate();
 
@@ -27,36 +29,40 @@ const RegistrationForm = (props) => {
     { value: "Platinum", label: "Platinum" },
   ];
 
-const handleChange = (e) => {
-  const { name, value } = e.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser((prevUser) => ({
+      ...prevUser,
+      [name]: value,
+    }));
 
-  // Clear specific error for the field being changed
-  setErrs((prevErrs) => {
-    const { [name]: removedError, ...remainingErrors } = prevErrs;
-    return remainingErrors;
-  });
+    // Clear specific error for the field being changed
+    setErrs((prevErrs) => {
+      const { [name]: removedError, ...remainingErrors } = prevErrs;
+      return remainingErrors;
+    });
 
-  // Update user state
-  setUser((prevUser) => {
-    const updatedUser = { ...prevUser, [name]: value };
+    // Update user state
+    setUser((prevUser) => {
+      const updatedUser = { ...prevUser, [name]: value };
 
-    // Check for password match validation
-    if (name === "password" || name === "confirmPassword") {
-      if (updatedUser.password !== updatedUser.confirmPassword) {
-        setErrs((prevErrs) => ({
-          ...prevErrs,
-          confirmPassword: { message: "Passwords do not match" },
-        }));
-      } else {
-        setErrs((prevErrs) => {
-          const { confirmPassword, ...remainingErrors } = prevErrs;
-          return remainingErrors;
-        });
+      // Check for password match validation
+      if (name === "password" || name === "confirmPassword") {
+        if (updatedUser.password !== updatedUser.confirmPassword) {
+          setErrs((prevErrs) => ({
+            ...prevErrs,
+            confirmPassword: { message: "Passwords do not match" },
+          }));
+        } else {
+          setErrs((prevErrs) => {
+            const { confirmPassword, ...remainingErrors } = prevErrs;
+            return remainingErrors;
+          });
+        }
       }
-    }
-    return updatedUser;
-  });
-};
+      return updatedUser;
+    });
+  };
 
   const registerUser = (e) => {
     e.preventDefault();
@@ -65,9 +71,10 @@ const handleChange = (e) => {
         withCredentials: true,
       })
       .then((res) => {
-        console.log("here is the data", res.data);
+        // console.log("here is the data", res.data);
         setIsLoggedin(true);
         setErrs({});
+        window.scrollTo({ top: 0, behavior: "smooth" });
         navigate("/MainDashboard");
       })
       .catch((err) => {

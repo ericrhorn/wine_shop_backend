@@ -4,8 +4,7 @@ import "../style/shoppingCart.css";
 import Button from "@mui/material/Button";
 
 const ShoppingCart = (props) => {
-  const {  cart, setCart, setShowDetails, addItemToCart, removeItemFromCart } =
-    props;
+  const { cart, setShowDetails, addItemToCart, removeItemFromCart } = props;
   const navigate = useNavigate();
 
   const keepShopping = () => {

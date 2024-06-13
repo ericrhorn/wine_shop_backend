@@ -1,11 +1,11 @@
 // App.js
-import { useDebugValue, useState } from "react";
+import { useState } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Nav from "./Home/Nav";
 import Home from "./Home/Home";
 import Store from "./Products/Store";
 import LoginReg from "./components/LoginReg";
-import About from "./components/About";
+// import About from "./components/About";
 import Banner from "./Home/Banner";
 import Footer from "./Home/Footer";
 import WineClub from "./WineClub/WineClub";
@@ -21,7 +21,6 @@ const CART_exp = 30 * 60 * 1000;
 
 function App(props) {
   const [productList, setProductList] = useState({});
-  // const [isLoggedin, setIsLoggedin] = useState(false);
   const [cart, setCart] = useState([]);
 
   const addItemToCart = (product) => {
@@ -90,8 +89,6 @@ function App(props) {
       <UserProvider>
         <div id="root">
           <Nav
-            // isLoggedin={isLoggedin}
-            // setIsLoggedin={setIsLoggedin}
             cart={cart}
             setCart={setCart}
             addItemToCart={addItemToCart}
@@ -119,28 +116,15 @@ function App(props) {
                   />
                 }
               />
-              <Route
-                exact
-                path="/login"
-                element={<LoginReg />}
-                // element={<LoginReg setIsLoggedin={setIsLoggedin} />}
-              />
+              <Route exact path="/login" element={<LoginReg />} />
               {/* <Route exact path="/about" element={<About />} /> */}
-              <Route
-                path="/wineClub"
-                element={<WineClub />}
-                // element={<WineClub setIsLoggedin={setIsLoggedin} />}
-              />
-              <Route
-                path="/mainDashboard"
-                element={<MainDashboard />}
-                // element={<MainDashboard isLoggedin={isLoggedin} />}
-              />
+              <Route path="/wineClub" element={<WineClub />} />
+              <Route path="/mainDashboard" element={<MainDashboard />} />
               <Route path="/update/:_id" element={<UpdateUser />} />
+              {/* <Route path="/userUpdate/:_id" element={<UserUpdate />} /> */}
             </Routes>
           </div>
           <Footer />
-          {/* <Footer isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin} /> */}
         </div>
       </UserProvider>
     </HashRouter>

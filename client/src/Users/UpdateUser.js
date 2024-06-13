@@ -10,11 +10,13 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
+import { useUser } from "../Context/UserContext"; // Import the useUser hook
 
-const UpdateUser = (props) => {
+const UpdateUser = () => {
   const { _id } = useParams();
   const navigate = useNavigate();
-  console.log('user id in update user',_id)
+  const { user: loggedInUser } = useUser();
+  console.log("user id in update user", _id);
 
   const [user, setUser] = useState({
     firstName: "",
@@ -103,92 +105,6 @@ const UpdateUser = (props) => {
     <>
       {user ? (
         <>
-          {/* <div
-            id="container"
-            style={{
-              border: "1px solid black",
-              height: "500px",
-              width: "60%",
-              margin: "auto",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "space-around",
-                alignItems: "stretch",
-                padding: "20px",
-                margin: "20px",
-              }}
-            >
-              <div
-                style={{
-                  flexShrink: "1",
-                  margin: "20px",
-                  border: "1px solid black",
-                }}
-              >
-                <h4>{user._id}</h4>
-              </div>
-              <div
-                style={{
-                  flexShrink: "0",
-                  margin: "20px",
-                  border: "1px solid black",
-                }}
-              >
-                <h4>
-                  {user.firstName} {user.lastName}
-                </h4>
-              </div>
-              <div
-                style={{
-                  flexShrink: "0",
-                  margin: "20px",
-                  border: "1px solid black",
-                }}
-              >
-                <h4>{user.email}</h4>
-              </div>
-              <div
-                style={{
-                  flexShrink: "0",
-                  margin: "20px",
-                  border: "1px solid black",
-                }}
-              >
-                <h4>{user.clubLevel}</h4>
-              </div>
-            </div>
-          </div>
-          <div className="m-5">
-            <div className="w-2/4 m-auto grid grid-cols-4 gap-4">
-              <div>
-                <h4>
-                  {user.firstName} {user.lastName}
-                </h4>
-              </div>
-              <div>
-                <h4>{user.email}</h4>
-              </div>
-            </div>
-            <div className="w-2/4 m-auto grid grid-cols-4 gap-4">
-              <div>
-                <h4>{user.clubLevel}</h4>
-              </div>
-              <div>
-                <h4>
-                  {user.isAdmin
-                    ? "Admin"
-                    : user.isManager
-                    ? "Manager"
-                    : "Regular User"}
-                </h4>
-              </div>
-            </div>
-          </div> */}
-
           <div className="pb-5" id="container" style={{ height: "" }}>
             <div style={{ width: "60%", margin: "auto" }}>
               <form onSubmit={updateHandler}>
@@ -303,49 +219,47 @@ const UpdateUser = (props) => {
                         />
                       </Grid>
                     </Grid>
-
-                    <Grid item container spacing={2}>
-                      <Grid item xs={12} sm={12}>
-                        <div>
-                          <p>
-                            {user.isAdmin
-                              ? "Admin"
-                              : user.isManager
-                              ? "Manager"
-                              : "Regular User"}
-                          </p>
-                        </div>
+                    {loggedInUser && loggedInUser.isAdmin && (
+                      <Grid item container spacing={2}>
+                        <Grid item container spacing={2}>
+                          <Grid item xs={12} sm={12}>
+                            <div>
+                              <p>
+                                {user.isAdmin
+                                  ? "Admin"
+                                  : user.isManager
+                                  ? "Manager"
+                                  : "Regular User"}
+                              </p>
+                            </div>
+                          </Grid>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                          <FormControlLabel
+                            control={
+                              <Checkbox
+                                checked={user.isAdmin}
+                                onChange={handleChange}
+                                name="isAdmin"
+                              />
+                            }
+                            label="Admin"
+                          />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                          <FormControlLabel
+                            control={
+                              <Checkbox
+                                checked={user.isManager}
+                                onChange={handleChange}
+                                name="isManager"
+                              />
+                            }
+                            label="Manager"
+                          />
+                        </Grid>
                       </Grid>
-                    </Grid>
-                    <Grid item container spacing={2}>
-                      <Grid item xs={12} sm={6}>
-                        <FormControlLabel
-                          // name="isAdmin"
-                          control={
-                            <Checkbox
-                              checked={user.isAdmin}
-                              onChange={handleChange}
-                              name="isAdmin"
-                            />
-                          }
-                          label="Admin"
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <FormControlLabel
-                          // name="isManager"
-                          control={
-                            <Checkbox
-                              checked={user.isManager}
-                              onChange={handleChange}
-                              name="isManager"
-                            />
-                          }
-                          label="Manager"
-                        />
-                      </Grid>
-                    </Grid>
-
+                    )}
                     <Grid item container spacing={2}>
                       <Grid item>
                         <Button type="submit" variant="contained">

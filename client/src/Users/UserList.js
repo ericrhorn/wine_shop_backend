@@ -1,41 +1,32 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import {
-  Button,
-  TextField,
-  InputAdornment,
-  IconButton,
-} from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+import { Button } from "@mui/material";
 import Search from "../components/Search";
 
-import { useUser } from "../Context/UserContext";
-
-
-
 const UserList = (props) => {
-  // const [userList, setUserList] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("")
-  // const { _id } = props;
-
-   const { userList, fetchUserList } = useUser();
-
+  const [userList, setUserList] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const { _id } = props;
 
   useEffect(() => {
-    fetchUserList();
-  }, [fetchUserList]);
+    axios
+      .get("http://localhost:8000/api/users/showUsers")
+      .then((res) => {
+        setUserList(res.data);
+      })
+      .catch((err) => console.log(err.data));
+  }, [_id]);
 
-const filteredUserList = userList.filter((user) => 
-  `${user.firstName} ${user.lastName} ${user.email} `
-  .toLowerCase()
-  .includes(searchTerm.toLowerCase())
-);
+  const filteredUserList = userList.filter((user) =>
+    `${user.firstName} ${user.lastName} ${user.email} `
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
+  );
 
-const handleSearchChange = (e) => {
-  setSearchTerm(e.target.value);
-}
-
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   return (
     <div className="w-full">
@@ -45,28 +36,6 @@ const handleSearchChange = (e) => {
           searchTerm={searchTerm}
           handleSearchChange={handleSearchChange}
         />
-        {/* <form action="">
-          <TextField
-            id="searchField"
-            className="form-control rounded-lg"
-            type="text"
-            name="search"
-            label="Search"
-            variant="outlined"
-            size="small"
-            value={searchTerm}
-            onChange={handleSearchChange}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <IconButton>
-                    <SearchIcon />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-        </form> */}
       </div>
       <table className="text-sm table-auto rounded-lg  w-full border border-slate-700  ">
         <thead>

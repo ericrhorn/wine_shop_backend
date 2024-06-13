@@ -7,8 +7,7 @@ import { useUser } from "../Context/UserContext";
 
 const LoginReg = (props) => {
   const navigate = useNavigate();
-  // const { setIsLoggedin } = props;
-  const { handleLogin } = useUser();
+  const { setIsLoggedin } = useUser();
   const [errs, setErrs] = useState("");
 
   const [user, setUser] = useState({
@@ -23,46 +22,28 @@ const LoginReg = (props) => {
     });
   };
 
-  // const login = (e) => {
-  //   e.preventDefault();
-  //   axios
-  //     .post("http://localhost:8000/api/user/login", user, {
-  //       withCredentials: true,
-  //     })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setIsLoggedin(true);
-  //       setErrs("");
-  //       setUser({
-  //         email: "",
-  //         password: "",
-  //       });
-  //       window.scrollTo({ top: 0, behavior: "smooth" });
-  //       navigate("/MainDashboard");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.response.data.error);
-  //       setErrs(err.response.data.error);
-  //     });
-  // };
-
-const login = (e) => {
-  e.preventDefault();
-  handleLogin(user)
-    .then(() => {
-      setErrs("");
-      setUser({
-        email: "",
-        password: "",
+  const login = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:8000/api/user/login", user, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setIsLoggedin(true);
+        setErrs("");
+        setUser({
+          email: "",
+          password: "",
+        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        navigate("/MainDashboard");
+      })
+      .catch((err) => {
+        console.log(err.response.data.error);
+        setErrs(err.response.data.error);
       });
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      navigate("/mainDashboard");
-    })
-    .catch((err) => {
-      console.log(err.response.data.error);
-      setErrs(err.response.data.error);
-    });
-};
+  };
 
   return (
     <>
@@ -150,7 +131,7 @@ const login = (e) => {
                 </Grid>
               </Grid>
               <Grid className="mt-2">
-                <a href="">Forgot Password?</a>
+                {/* <a href="">Forgot Password?</a> */}
               </Grid>
             </Box>
           </form>
