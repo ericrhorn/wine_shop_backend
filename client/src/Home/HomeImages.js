@@ -12,7 +12,7 @@ import Barel from "../assets/carousel/wine_barel.jpeg";
 function HomeImages() {
   const [index, setIndex] = useState(0);
   const [width, setWidth] = useState(window.innerWidth);
-  console.log(width)
+  // console.log(width)
 
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
@@ -22,7 +22,7 @@ function HomeImages() {
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  });
 
   const images = [Chateau, Patio, Patio2, Tasting, Vinyard, Barel];
 

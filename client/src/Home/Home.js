@@ -37,7 +37,7 @@ function Home() {
             alignItems="center"
             spacing={2}
           >
-            <Grid item xs={8}>
+            <Grid item xs={12} md={10}>
               <h1
                 style={{
                   textAlign: "center",
@@ -48,7 +48,13 @@ function Home() {
               >
                 The Wine Club
               </h1>
-              <p style={{ lineHeight: "2", fontSize: "18px" }}>
+              <p
+                style={{
+                  lineHeight: "2",
+                  fontSize: "18px",
+                  textAlign: "justify",
+                }}
+              >
                 Sed quid ages tandem, si utilitas ab amicitia, ut fit saepe,
                 defecerit? Hoc enim constituto in philosophia constituta sunt
                 omnia. Quamquam te quidem video minime esse deterritum. Sic enim
@@ -62,7 +68,7 @@ function Home() {
         </Box>
       </div>
       <div
-        style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}
+        style={{ display: "flex", justifyContent: "center", marginTop: "30px" }}
       >
         <Box sx={{ flexGrow: 1 }}>
           <Grid

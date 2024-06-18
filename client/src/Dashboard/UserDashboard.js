@@ -55,11 +55,11 @@ const UserDashboard = () => {
                     >
                       {user.clubLevel} Level
                     </h3>
-                    <div style={{ padding: "0px 25px" }}>
+                    {/* <div style={{ padding: "0px 25px" }}>
                       <p>$125 every 3 months</p>
                       <p>3 free Tastings a month</p>
                       <p>3 wines of your choice shipped quarterly</p>
-                    </div>
+                    </div> */}
                   </div>
                 </Item>
               </Grid>
@@ -93,9 +93,9 @@ const UserDashboard = () => {
                         <h1>5</h1>
                       ) : user.clubLevel === "Silver" ? (
                         <h1>3</h1>
-                      ): useUser.clubLevel === "Platinum" ? (
+                      ) : useUser.clubLevel === "Platinum" ? (
                         <h1>Unlimited</h1>
-                      ):null}
+                      ) : null}
                     </div>
                   </div>
                 </Item>

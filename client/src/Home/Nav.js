@@ -36,7 +36,7 @@ const Nav = (props) => {
   // const [user, setUser] = useState(null);
   const { isLoggedin, user, logout } = useUser();
   const [showDetails, setShowDetails] = useState(false);
-  const [ setProductList] = useState([]);
+  const [setProductList] = useState([]);
 
   console.log("nav user", user);
   // console.log("nav user firstName", user.firstName);
@@ -54,25 +54,6 @@ const Nav = (props) => {
 
   console.log("nav cart", cart);
 
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         "http://localhost:8000/api/user/current-user",
-  //         {
-  //           withCredentials: true,
-  //         }
-  //       );
-  //       console.log(response.data);
-  //       setUser(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching user data:", error);
-  //     }
-  //   };
-
-  //   fetchUserData();
-  // }, [isLoggedin]);
-
   useEffect(() => {
     const savedCart = getWithExpiry("cart");
     if (savedCart) {
@@ -85,26 +66,6 @@ const Nav = (props) => {
       })
       .catch((err) => console.log(err.data));
   });
-
-  // const logout = () => {
-  //   axios
-  //     .post(
-  //       "http://localhost:8000/api/user/logout",
-  //       {},
-  //       { withCredentials: true }
-  //     )
-  //     .then((res) => {
-  //       setUser(null);
-  //       // setIsLoggedin(false);
-  //       console.log("successfully logged out");
-  //       navigate("/");
-  //       setIsLoggedin(false);
-  //       // window.location.reload();
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
 
   const handleLogout = () => {
     navigate("/");
@@ -129,19 +90,12 @@ const Nav = (props) => {
       <HideOnScroll {...props}>
         <AppBar color="default">
           {user ? (
-            <Toolbar className="h-[20px]">
-              <nav
-                className="large-nav"
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  width: "100%",
-                }}
-              >
-                <div>
+            <Toolbar className="toolbar h-[20px]">
+              <nav className="large-nav flex w-full">
+                <div className="">
                   <WineBarIcon fontSize="medium" />
                 </div>
-                <div className="navLinks">
+                <div className="navLinks w-full justify-end">
                   <Link to="/" relative="path">
                     Home
                   </Link>
@@ -158,6 +112,9 @@ const Nav = (props) => {
                     {user.firstName}
                   </Link>
                   <Link onClick={handleLogout}>Logout</Link>
+                </div>
+
+                <div className="icons w-[50px] justify-center">
                   <Link
                     onClick={() => {
                       setShowDetails(true);
@@ -166,20 +123,21 @@ const Nav = (props) => {
                     <ShoppingCartIcon
                       fontSize="medium"
                       className="relative z-10"
+                      style={{ color: "black" }}
                     />
                     {cart.length > 0 ? (
-                      <div className="cartQuantity absolute top-30 right-10  bg-red-600 rounded-full h-[20px] w-[20px] flex items-center justify-center">
+                      <div className="cartQuantity absolute top-3 right-6 bg-red-600 rounded-full h-[20px] w-[20px] flex items-center justify-center">
                         <p className="text-white m-1">{totalCartQuantity}</p>
                       </div>
                     ) : null}
                   </Link>
-                </div>
-                <div className="hamIcon" onClick={openMenu}>
-                  {showMenu ? (
-                    <CloseIcon fontSize="large" />
-                  ) : (
-                    <MenuIcon fontSize="large" />
-                  )}
+                  <div className="hamIcon" onClick={openMenu}>
+                    {showMenu ? (
+                      <CloseIcon fontSize="large" />
+                    ) : (
+                      <MenuIcon fontSize="large" />
+                    )}
+                  </div>
                 </div>
               </nav>
               {showMenu && (
@@ -187,9 +145,7 @@ const Nav = (props) => {
                   <Link onClick={closeMenu} to="/" relative="path">
                     Home
                   </Link>
-                  {/* <Link onClick={closeMenu} to="/about" relative="path">
-                    About Us
-                  </Link> */}
+
                   <Link onClick={closeMenu} to="/store" relative="path">
                     Store
                   </Link>
@@ -207,38 +163,16 @@ const Nav = (props) => {
                   >
                     Logout
                   </Link>
-                  <Link
-                    onClick={() => {
-                      setShowDetails(true);
-                    }}
-                  >
-                    <ShoppingCartIcon
-                      fontSize="medium"
-                      className="relative z-10"
-                    />
-                    {cart.length > 0 ? (
-                      <div className="cartQuantity absolute top-30 right-10  bg-red-600 rounded-full h-[20px] w-[20px] flex items-center justify-center">
-                        <p className="text-white m-1">{totalCartQuantity}</p>
-                      </div>
-                    ) : null}
-                  </Link>
                 </nav>
               )}
             </Toolbar>
           ) : (
-            <Toolbar>
-              <nav
-                className="large-nav"
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  width: "100%",
-                }}
-              >
+            <Toolbar className="toolbar h-[20px]">
+              <nav className="large-nav flex w-full">
                 <div>
-                  <WineBarIcon fontSize="large" />
+                  <WineBarIcon fontSize="medium" />
                 </div>
-                <div className="navLinks">
+                <div className="navLinks w-full justify-end">
                   <Link to="/" relative="path">
                     Home
                   </Link>
@@ -259,6 +193,8 @@ const Nav = (props) => {
                   >
                     Login
                   </ScrollLink>
+                </div>
+                <div className="icons w-[50px] justify-center">
                   <Link
                     onClick={() => {
                       setShowDetails(true);
@@ -266,22 +202,22 @@ const Nav = (props) => {
                   >
                     <ShoppingCartIcon
                       fontSize="medium"
-                      className="relative z-10"
+                      className="relative z-10 "
+                      style={{ color: "black" }}
                     />
                     {cart.length > 0 ? (
-                      <div className="cartQuantity absolute top-30 right-10  bg-red-600 rounded-full h-[20px] w-[20px] flex items-center justify-center">
+                      <div className="cartQuantity absolute top-3 right-6 bg-red-600 rounded-full h-[20px] w-[20px] flex items-center justify-center">
                         <p className="text-white m-1">{totalCartQuantity}</p>
                       </div>
                     ) : null}
                   </Link>
-                </div>
-
-                <div className="hamIcon" onClick={openMenu}>
-                  {showMenu ? (
-                    <CloseIcon fontSize="large" />
-                  ) : (
-                    <MenuIcon fontSize="large" />
-                  )}
+                  <div className="hamIcon" onClick={openMenu}>
+                    {showMenu ? (
+                      <CloseIcon fontSize="large" />
+                    ) : (
+                      <MenuIcon fontSize="large" />
+                    )}
+                  </div>
                 </div>
               </nav>
               {showMenu && (
@@ -307,23 +243,6 @@ const Nav = (props) => {
                   >
                     Login
                   </ScrollLink>
-                  <Link
-                    onClick={() => {
-                      setShowDetails(true);
-                    }}
-                    className="cartLink"
-                  >
-                    <ShoppingCartIcon
-                      fontSize="medium"
-                      className="relative z-10"
-                    />
-                    {cart.length > 0 ? (
-                      // <div className="cartQuantity bg-red-600 rounded-full h-[20px] w-[20px] flex items-center justify-center">
-                      <div className="absolute top-0 right-0 bg-red-600 rounded-full h-[20px] w-[20px] flex items-center justify-center">
-                        <p className="text-white m-1">{totalCartQuantity}</p>
-                      </div>
-                    ) : null}
-                  </Link>
                 </nav>
               )}
             </Toolbar>
@@ -344,7 +263,6 @@ const Nav = (props) => {
           />
         </div>
       )}
-      {/* <Toolbar /> */}
     </>
   );
 };

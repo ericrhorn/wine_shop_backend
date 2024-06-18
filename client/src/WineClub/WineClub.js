@@ -26,12 +26,18 @@ const WineClub = (props) => {
           }}
         >
           <Box sx={{ flexGrow: 1 }}>
-            <div className="flex flex-col m-auto w-[80%] pb-4">
+            <div className="flex flex-col m-auto md:w-[80%] sm:w-[100%] pb-4">
               <div className="flex justify-center">
                 <h1>Join Wine Clubs Wine Club</h1>
               </div>
               <div className="flex justify-center text-justify">
-                <p>
+                <p
+                  style={{
+                    lineHeight: "2",
+                    fontSize: "18px",
+                    textAlign: "justify",
+                  }}
+                >
                   freestar freestar freestar Lorem ipsum dolor sit amet,
                   consectetur adipiscing elit. Nullam varius tortor magna, non
                   hendrerit risus vehicula in. Integer congue hendrerit ligula
