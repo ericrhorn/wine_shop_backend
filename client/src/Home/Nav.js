@@ -90,7 +90,7 @@ const Nav = (props) => {
       <HideOnScroll {...props}>
         <AppBar color="default">
           {user ? (
-            <Toolbar className="toolbar h-[20px]">
+            <Toolbar className="toolbar h-[5px]">
               <nav className="large-nav flex w-full">
                 <div className="">
                   <WineBarIcon fontSize="medium" />
