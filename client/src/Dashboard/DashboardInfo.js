@@ -18,7 +18,7 @@ const DashboardInfo = () => {
 
   return (
     <>
-      <div className="flex flex-wrap items-stretch w-full">
+      {/* <div className="flex flex-wrap items-stretch w-full">
         <div className="flex  flex-col w-full md:flex-row md:overflow-hidden overflow-hidden">
           <div className="flex flex-wrap flex-col w-full md:flex-row md:overflow-hidden overflow-hidden">
             <div className="min-w-[200px] flex-1 border-2 rounded-xl bg-gray-100 shadow-sm relative overflow-hidden m-2">
@@ -96,8 +96,9 @@ const DashboardInfo = () => {
             <div className="flex items-center  truncate rounded-xl bg-white p-4 m-2"></div>
           </div>
         </div>
-      </div>
+      </div> */}
 
+{/* upper grid */}
       <div>
         <div
           style={{
@@ -111,15 +112,15 @@ const DashboardInfo = () => {
               // alignItems="center"
               container
               spacing={0}
-              columns={{ xs: 2, sm: 2, md: 2, lg: 2 }}
+              columns={{ xs: 12, sm: 12, md: 2, lg: 6 }}
             >
               <Grid
                 style={{ padding: "10px", textAlign: "center" }}
                 item
-                // xs={12}
-                sm={12}
-                md={12}
-                lg={3}
+                xs={12}
+                sm={6}
+                md={1}
+                lg={1.5}
               >
                 <Item>
                   <div>
@@ -137,10 +138,52 @@ const DashboardInfo = () => {
               <Grid
                 style={{ padding: "10px", textAlign: "center" }}
                 item
-                // xs={12}
-                sm={12}
-                md={12}
-                lg={3}
+                xs={12}
+                sm={6}
+                md={1}
+                lg={1.5}
+              >
+                <Item>
+                  <div>
+                    <h3
+                      style={{
+                        fontFamily: "Open Sans",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      hello
+                    </h3>
+                  </div>
+                </Item>
+              </Grid>
+              <Grid
+                style={{ padding: "10px", textAlign: "center" }}
+                item
+                xs={12}
+                sm={6}
+                md={1}
+                lg={1.5}
+              >
+                <Item>
+                  <div>
+                    <h3
+                      style={{
+                        fontFamily: "Open Sans",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      hello
+                    </h3>
+                  </div>
+                </Item>
+              </Grid>
+              <Grid
+                style={{ padding: "10px", textAlign: "center" }}
+                item
+                xs={12}
+                sm={6}
+                md={1}
+                lg={1.5}
               >
                 <Item>
                   <div>
@@ -157,35 +200,28 @@ const DashboardInfo = () => {
                         textTransform: "uppercase",
                       }}
                     >
-                      Free Tastings Available
+                      hello
                     </h3>
                     <div style={{ padding: "0px 25px" }}>
-                      {/* {user.clubLevel === "Gold" ? (
-                        <h1>5</h1>
-                      ) : user.clubLevel === "Silver" ? (
-                        <h1>3</h1>
-                      ) : useUser.clubLevel === "Platinum" ? (
-                        <h1>Unlimited</h1>
-                      ) : null} */}
                     </div>
                   </div>
                 </Item>
               </Grid>
             </Grid>
-
+{/* lower grid */}
             <Grid
               // justifyContent="center"
               // alignItems="center"
               container
               spacing={0}
-              columns={{ xs: 2, sm: 2, md: 2, lg: 2 }}
+              columns={{ xs: 12, sm: 12, md: 2, lg: 6 }}
             >
               <Grid
                 style={{ padding: "10px", textAlign: "center" }}
                 item
-                // xs={12}
+                xs={12}
                 sm={12}
-                md={12}
+                md={3}
                 lg={3}
               >
                 <Item>
@@ -216,9 +252,9 @@ const DashboardInfo = () => {
               <Grid
                 style={{ padding: "10px", textAlign: "center" }}
                 item
-                // xs={12}
+                xs={12}
                 sm={12}
-                md={12}
+                md={3}
                 lg={3}
               >
                 <Item>
