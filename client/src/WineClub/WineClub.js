@@ -26,7 +26,7 @@ const WineClub = (props) => {
           }}
         >
           <Box sx={{ flexGrow: 1 }}>
-            <div className="flex flex-col m-auto md:w-[80%] sm:w-[100%] pb-4">
+            <div className="flex flex-col m-auto md:w-[80%] sm:w-[100%] pb-[100px]">
               <div className="flex justify-center">
                 <h1>Join Wine Clubs Wine Club</h1>
               </div>
@@ -72,6 +72,7 @@ const WineClub = (props) => {
               container
               spacing={0}
               columns={{ xs: 2, sm: 4, md: 8, lg: 12 }}
+              paddingBottom={'100px'}
             >
               <Grid
                 style={{ padding: "10px", textAlign: "center" }}

@@ -86,7 +86,11 @@ const AdminProductList = () => {
             </div>
             <CardActionArea>
               <div className="p-2">
-                <CardMedia component="img" image={wineBottle} />
+                <CardMedia
+                  className="h-[150px] w-auto m-auto "
+                  component="img"
+                  image={wineBottle}
+                />
               </div>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">

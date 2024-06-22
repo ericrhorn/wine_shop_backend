@@ -8,6 +8,9 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Search from "../components/Search";
 
+import IconButton from "@mui/material/IconButton";
+import Box from "@mui/material/Box";
+
 import wineBottle from "../assets/wine_bottle.jpeg";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
