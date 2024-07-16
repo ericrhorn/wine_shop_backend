@@ -64,8 +64,8 @@ const Nav = (props) => {
       .then((res) => {
         setProductList(res.data);
       })
-      .catch((err) => console.log(err.data));
-  });
+      .catch((err) => console.log('err data', err.data));
+  }, []);
 
   const handleLogout = () => {
     navigate("/");

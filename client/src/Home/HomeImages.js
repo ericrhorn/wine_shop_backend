@@ -22,7 +22,7 @@ function HomeImages() {
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  });
+  }, []);
 
   const images = [Chateau, Patio, Patio2, Tasting, Vinyard, Barel];
 

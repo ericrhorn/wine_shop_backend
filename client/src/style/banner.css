@@ -1,0 +1,22 @@
+.parallax-banner {
+  position: relative;
+  height: 500px;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+
+.parallax-background {
+  background-image: url('../assets/wine_bar.jpeg');
+  height: 500px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
